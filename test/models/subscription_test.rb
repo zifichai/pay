@@ -35,6 +35,20 @@ class Pay::Subscription::Test < ActiveSupport::TestCase
     refute_includes ::Subscription.for_name('default'), subscription2
   end
 
+  test '#no_prorate' do
+    @subscription.prorate = true
+    assert @subscription.prorate
+
+    @subscription.no_prorate
+    refute @subscription.prorate
+  end
+
+  test 'skip_trial' do
+    @subscription.trial_ends_at = 1.week.from_now
+    @subscription.skip_trial
+    assert_nil @subscription.trial_ends_at
+  end
+
   test 'active trial' do
     @subscription.trial_ends_at = 5.minutes.from_now
     assert @subscription.on_trial?

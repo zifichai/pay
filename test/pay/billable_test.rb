@@ -147,4 +147,53 @@ class Pay::Billable::Test < ActiveSupport::TestCase
   test 'has charges' do
     assert @billable.respond_to?(:charges)
   end
+
+  test '#on_trial? with a default trial' do
+    @billable.processor = 'stripe'
+    @billable.expects(:on_generic_trial?).returns(true)
+
+    assert @billable.on_trial?
+  end
+
+  test '#on_trial? without a default trial and no subscription trial' do
+    @billable.processor = 'stripe'
+
+    subscription = mock('subscription')
+    subscription.expects(:on_trial_with_plan?).with(plan: 'frozen-banana').returns(false)
+
+    @billable.stubs(:subscription).returns(subscription)
+
+    refute @billable.on_trial?(plan: 'frozen-banana')
+  end
+
+  test '#on_trial? without a default trial and with a subscription trial' do
+    @billable.processor = 'stripe'
+
+    subscription = mock('subscription')
+    subscription.expects(:on_trial_with_plan?).with(plan: 'frozen-banana').returns(true)
+
+    @billable.stubs(:subscription).returns(subscription)
+
+    assert @billable.on_trial?(name: 'fire-sale', plan: 'frozen-banana')
+  end
+
+  test '#on_generic_trial? with no trial end date' do
+    @billable.stubs(:trial_ends_at?).returns(nil)
+
+    refute @billable.on_generic_trial?
+  end
+
+  test '#on_generic_trial? with a trial end date less than now' do
+    @billable.stubs(:trial_ends_at?).returns(true)
+    @billable.stubs(:trial_ends_at).returns(1.week.ago)
+
+    refute @billable.on_generic_trial?
+  end
+
+  test '#on_generic_trial? with a trial end date greater than now' do
+    @billable.stubs(:trial_ends_at?).returns(true)
+    @billable.stubs(:trial_ends_at).returns(1.week.from_now)
+
+    assert @billable.on_generic_trial?
+  end
 end

@@ -29,6 +29,12 @@ class Subscription < ApplicationRecord
     trial_ends_at? && Time.zone.now < trial_ends_at
   end
 
+  def on_trial_with_plan?(plan:)
+    return on_trial? if plan.nil?
+
+    on_trial? && processor_plan == plan
+  end
+
   def cancelled?
     ends_at?
   end

@@ -19,21 +19,21 @@ module Pay
 
     def customer
       check_for_processor
-      raise Pay::Error, "Email is required to create a customer" if email.nil?
+      raise Pay::Error, 'Email is required to create a customer' if email.nil?
 
       customer = send("#{processor}_customer")
       update_card(card_token) if card_token.present?
       customer
     end
 
-    def charge(amount_in_cents, options={})
+    def charge(amount_in_cents, options = {})
       check_for_processor
       send("create_#{processor}_charge", amount_in_cents, options)
     end
 
-    def subscribe(name = 'default', plan = 'default', options={})
+    def subscribe(name = 'default', plan = 'default', options = {})
       check_for_processor
-      send("create_#{processor}_subscription", name, plan, options={})
+      send("create_#{processor}_subscription", name, plan, options)
     end
 
     def update_card(token)
@@ -44,15 +44,14 @@ module Pay
 
     def on_trial?(name: 'default', plan: nil)
       # Generic trials don't have plans or custom names
-      return true if plan.nil? && name == 'default' && on_generic_trial?
+      return true if default_trial?(name, plan)
+      return false unless sub = subscription(name)
 
-      sub = subscription(name)
-      sub && sub.on_trial? if plan.nil?
-      sub && sub.on_trial? && sub.processor_plan == plan
+      sub.on_trial_with_plan?(plan: plan)
     end
 
     def on_generic_trial?
-      trial_ends_at? && trial_ends_at < Time.zone.now
+      trial_ends_at? && trial_ends_at > Time.zone.now
     end
 
     def processor_subscription(subscription_id)
@@ -97,6 +96,10 @@ module Pay
         quantity: qty,
         ends_at: nil
       )
+    end
+
+    def default_trial?(name, plan)
+      plan.nil? && name == 'default' && on_generic_trial?
     end
   end
 end
