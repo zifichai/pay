@@ -9,17 +9,17 @@ module Pay
         end
       end
 
-      def create_stripe_charge(amount, options={})
+      def create_stripe_charge(amount, options = {})
         args = {
           amount: amount,
           currency: 'usd',
-          customer: customer.id,
+          customer: customer.id
         }.merge(options)
 
         ::Stripe::Charge.create(args)
       end
 
-      def create_stripe_subscription(name, plan, options={})
+      def create_stripe_subscription(name, plan, options = {})
         stripe_sub   = customer.subscriptions.create(plan: plan, trial_from_plan: true)
         subscription = create_subscription(stripe_sub, 'stripe', name, plan)
         subscription
@@ -30,6 +30,7 @@ module Pay
         token = ::Stripe::Token.retrieve(token)
 
         return if token.card.id == customer.default_source
+
         result = save_stripe_card(token, customer)
         self.card_token = nil
         result
@@ -41,6 +42,7 @@ module Pay
 
       def stripe_invoice!
         return unless processor_id?
+
         ::Stripe::Invoice.create(customer: processor_id).pay
       end
 
@@ -49,24 +51,24 @@ module Pay
       end
 
       def stripe?
-        processor == "stripe"
+        processor == 'stripe'
       end
 
       def update_card_from_stripe
-        customer = stripe_customer
-        default_source_id = customer.default_source_id
+        customer       = stripe_customer
+        default_source = customer.default_source
 
-        if default_source_id.present?
-          card = customer.sources.data.find{ |s| s.id == default_source_id }
+        if default_source.present?
+          card = customer.sources.data.find { |s| s.id == default_source }
+
           update(
             card_brand: card.brand,
             card_last4: card.brand,
             card_exp_month: card.exp_month,
             card_exp_year: card.exp_year
           )
-
-        # Customer has no default payment source
         else
+          # Customer has no default payment source
           update(card_brand: nil, card_last4: nil)
         end
       end

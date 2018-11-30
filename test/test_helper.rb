@@ -33,6 +33,6 @@ Braintree::Configuration.public_key = "integration_public_key"
 Braintree::Configuration.private_key = "integration_private_key"
 
 require 'minitest/mock'
-require 'mocha/mini_test'
+require 'mocha/minitest'
 
 require 'stripe_mock'

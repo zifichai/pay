@@ -11,6 +11,8 @@ class Pay::Billable::Stripe::Test < ActiveSupport::TestCase
 
     @stripe_helper = StripeMock.create_test_helper
     @stripe_helper.create_plan(id: 'test-monthly', amount: 1500)
+
+    @token = @stripe_helper.generate_card_token(brand: 'Visa', last4: '4242')
   end
 
   teardown do
@@ -93,7 +95,7 @@ class Pay::Billable::Stripe::Test < ActiveSupport::TestCase
     assert @billable.card_last4 == '1117'
   end
 
-  test 'retriving a stripe subscription' do
+  test 'retrieving a stripe subscription' do
     @stripe_helper.create_plan(id: 'default', amount: 1500)
 
     customer = Stripe::Customer.create(
@@ -107,6 +109,17 @@ class Pay::Billable::Stripe::Test < ActiveSupport::TestCase
     )
 
     assert_equal @billable.stripe_subscription(subscription.id), subscription
+  end
+
+  test 'retrieving an upcoming stripe subscription' do
+    @billable.card_token = @token
+    @billable.customer
+    @billable.subscribe('monthly', 'test-monthly')
+
+    upcoming_invoice = @billable.stripe_upcoming_invoice
+    upcoming_invoice_date = Date.strptime(upcoming_invoice.date.to_s, '%s')
+
+    assert_equal upcoming_invoice_date, 1.month.from_now.to_date
   end
 
   test 'can create an invoice' do
@@ -156,5 +169,51 @@ class Pay::Billable::Stripe::Test < ActiveSupport::TestCase
     assert_nil @billable.card_last4
     assert_equal @billable.processor, 'stripe'
     assert_not_nil @billable.processor_id
+  end
+
+  test 'responds to stripe?' do
+    assert @billable.stripe?
+  end
+
+  test 'updating the card from stripe' do
+    @billable.card_token = @token
+    @billable.customer
+    assert_equal @billable.card_brand, 'Visa'
+
+    # Get Stripe Customer
+    customer = @billable.customer
+
+    # Add new card as default source
+    token = @stripe_helper.generate_card_token(brand: 'Mastercard', last4: '9191')
+    source = customer.sources.create(source: token)
+    customer.default_source = source.id
+    customer.save
+
+    # Testing that we don't know about the mastercard, yet
+    assert_equal @billable.card_brand, 'Visa'
+
+    # Get the new card from Stripe
+    @billable.update_card_from_stripe
+
+    assert_equal @billable.card_brand, 'Mastercard'
+  end
+
+  test 'updating the card from stripe when it is blank' do
+    @billable.card_token = @token
+    @billable.customer
+    assert_equal @billable.card_brand, 'Visa'
+
+    # Get Stripe Customer
+    customer = @billable.customer
+    customer.default_source = nil
+    customer.save
+
+    # Testing that we don't know about the mastercard, yet
+    assert_equal @billable.card_brand, 'Visa'
+
+    # Get the new card from Stripe
+    @billable.update_card_from_stripe
+
+    assert_nil @billable.card_brand
   end
 end
