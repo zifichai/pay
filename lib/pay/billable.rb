@@ -47,7 +47,7 @@ module Pay
       return true if default_trial?(name, plan)
       return false unless sub = subscription(name)
 
-      sub.on_trial_with_plan?(plan: plan)
+      sub.on_trial_for_plan?(plan: plan)
     end
 
     def on_generic_trial?

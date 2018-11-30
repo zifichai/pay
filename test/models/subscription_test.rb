@@ -59,6 +59,30 @@ class Pay::Subscription::Test < ActiveSupport::TestCase
     refute @subscription.on_trial?
   end
 
+  test 'active trial without plan' do
+    @subscription.trial_ends_at = 5.minutes.from_now
+    assert @subscription.on_trial_for_plan?(plan: nil)
+  end
+
+  test 'inactive trial without plan' do
+    @subscription.trial_ends_at = 5.minutes.ago
+    refute @subscription.on_trial_for_plan?(plan: nil)
+  end
+
+  test 'active trial with plan' do
+    @subscription.trial_ends_at = 5.minutes.from_now
+    @subscription.processor_plan = 'banana-stand'
+
+    assert @subscription.on_trial_for_plan?(plan: 'banana-stand')
+  end
+
+  test 'inactive trial with plan' do
+    @subscription.trial_ends_at = 5.minutes.ago
+    @subscription.processor_plan = 'banana-stand'
+
+    refute @subscription.on_trial_for_plan?(plan: 'banana-stand')
+  end
+
   test 'no trial' do
     @subscription.trial_ends_at = nil
     refute @subscription.on_trial?

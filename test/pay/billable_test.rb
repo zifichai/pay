@@ -159,7 +159,7 @@ class Pay::Billable::Test < ActiveSupport::TestCase
     @billable.processor = 'stripe'
 
     subscription = mock('subscription')
-    subscription.expects(:on_trial_with_plan?).with(plan: 'frozen-banana').returns(false)
+    subscription.expects(:on_trial_for_plan?).with(plan: 'frozen-banana').returns(false)
 
     @billable.stubs(:subscription).returns(subscription)
 
@@ -170,7 +170,7 @@ class Pay::Billable::Test < ActiveSupport::TestCase
     @billable.processor = 'stripe'
 
     subscription = mock('subscription')
-    subscription.expects(:on_trial_with_plan?).with(plan: 'frozen-banana').returns(true)
+    subscription.expects(:on_trial_for_plan?).with(plan: 'frozen-banana').returns(true)
 
     @billable.stubs(:subscription).returns(subscription)
 
