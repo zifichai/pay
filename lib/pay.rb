@@ -37,6 +37,6 @@ module Pay
     yield self
   end
 
-  class Error < StandardError;
+  class Error < StandardError
   end
 end

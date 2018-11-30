@@ -23,7 +23,7 @@ module Pay
         end
       end
 
-      def create_braintree_charge(amount, options={})
+      def create_braintree_charge(amount, options = {})
         args = {
           amount: amount / 100.0,
           customer_id: customer.id,
@@ -57,6 +57,7 @@ module Pay
             verify_card: true
           }
         )
+
         raise Pay::Error.new(result.message) unless result.success?
 
         self.card_token = nil
@@ -71,9 +72,9 @@ module Pay
 
       def update_subscriptions_to_payment_method(token)
         subscriptions.each do |subscription|
-          if subscription.active?
-            gateway.subscription.update(subscription.processor_id, { payment_method_token: token })
-          end
+          next unless subscription.active?
+
+          gateway.subscription.update(subscription.processor_id, payment_method_token: token)
         end
       end
 
@@ -90,11 +91,11 @@ module Pay
       end
 
       def braintree?
-        processor == "braintree"
+        processor == 'braintree'
       end
 
       def paypal?
-        braintree? && card_brand == "PayPal"
+        braintree? && card_brand == 'PayPal'
       end
 
       private
