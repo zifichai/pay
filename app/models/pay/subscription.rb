@@ -2,6 +2,8 @@ module Pay
   class Subscription < ApplicationRecord
     self.table_name = Pay.subscription_table
 
+    STATUSES = %w{ incomplete incomplete_expired trialing active past_due canceled unpaid }
+
     # Associations
     belongs_to :owner, class_name: Pay.billable_class, foreign_key: :owner_id
 
@@ -20,6 +22,14 @@ module Pay
     scope :active, ->{ where(ends_at: nil).or(on_grace_period).or(on_trial) }
 
     attribute :prorate, :boolean, default: true
+
+    STATUSES.each do |stripe_status|
+      scope stripe_status.to_sym, ->{ where(status: stripe_status) }
+
+      define_method :"#{stripe_status}?" do
+        status == stripe_status
+      end
+    end
 
     def no_prorate
       self.prorate = false

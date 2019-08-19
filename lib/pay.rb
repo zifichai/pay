@@ -82,4 +82,24 @@ module Pay
 
   class Error < StandardError
   end
+
+  class InvalidPaymentMethod < Error
+    def initialize(payment)
+      @payment = payment
+    end
+
+    def message
+      "This payment attempt failed beacuse of an invalid payment method."
+    end
+  end
+
+  class ActionRequired < Error
+    def initialize(payment)
+      @payment = payment
+    end
+
+    def message
+      "This payment attempt failed because additional action is required before it can be completed."
+    end
+  end
 end

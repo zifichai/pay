@@ -40,6 +40,11 @@ module Pay
         opts = { plan: plan, trial_from_plan: true }.merge(options)
         stripe_sub   = customer.subscriptions.create(opts)
         subscription = create_subscription(stripe_sub, 'stripe', name, plan)
+
+        if subscription.incomplete?
+          Pay::Payment.new(stripe_sub.latest_invoice.payment_intent).validate
+        end
+
         subscription
       rescue ::Stripe::StripeError => e
         raise Error, e.message
@@ -48,17 +53,15 @@ module Pay
       # Handles Billable#update_card
       #
       # Returns true if successful
-      def update_stripe_card(token)
+      def update_stripe_card(payment_method_id)
         customer = stripe_customer
-        token = ::Stripe::Token.retrieve(token)
 
-        return if token.card.id == customer.default_source
+        return true if payment_method_id == customer.invoice_settings.default_payment_method
 
-        card = customer.sources.create(source: token.id)
-        customer.default_source = card.id
-        customer.save
+        payment_method = ::Stripe::PaymentMethod.attach(payment_method_id, customer: customer.id)
+        ::Stripe::Customer.update(customer.id, invoice_settings: { default_payment_method: payment_method_id })
 
-        update_stripe_card_on_file(card)
+        update_stripe_card_on_file(payment_method.card)
         true
       rescue ::Stripe::StripeError => e
         raise Error, e.message
@@ -107,13 +110,15 @@ module Pay
       private
 
       def create_stripe_customer
-        customer = ::Stripe::Customer.create(email: email, source: card_token, description: customer_name)
+        customer = ::Stripe::Customer.create(email: email, payment_method: card_token, description: customer_name)
         update(processor: 'stripe', processor_id: customer.id)
 
         # Update the user's card on file if a token was passed in
-        source = customer.sources.data.first
-        if source.present?
-          update_stripe_card_on_file customer.sources.retrieve(source.id)
+        if card_token.present?
+          customer.invoice_settings.default_payment_method = card_token
+          customer.save
+
+          update_stripe_card_on_file ::Stripe::PaymentMethod.retrieve(card_token).card
         end
 
         customer
