@@ -106,8 +106,8 @@ module Pay
         end
       end
 
-      def braintree_subscription(subscription_id)
-        gateway.subscription.find(subscription_id)
+      def braintree_subscription(subscription_id, options={})
+        gateway.subscription.find(subscription_id, options)
       end
 
       def braintree_invoice!

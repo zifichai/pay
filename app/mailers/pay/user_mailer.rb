@@ -23,9 +23,20 @@ module Pay
     end
 
     def subscription_renewing(user, subscription)
+      @user, @subscription = user, subscription
+
       mail(
         to: to(user),
         subject: Pay.email_renewing_subject,
+      )
+    end
+
+    def payment_action_required(user, subscription, payment_intent_id)
+      @user, @subscription, @payment_intent_id = user, subscription, payment_intent_id
+
+      mail(
+        to: to(user),
+        subject: Pay.payment_action_required
       )
     end
 

@@ -13,6 +13,9 @@ StripeEvent.configure do |events|
   # This probably should be ignored for monthly subscriptions.
   events.subscribe 'invoice.upcoming', Pay::Stripe::Webhooks::SubscriptionRenewing.new
 
+  # Payment action is required to process an invoice
+  events.subscribe 'invoice.payment_action_required', Pay::Stripe::Webhooks::PaymentActionRequired.new
+
   # If a subscription is manually created on Stripe, we want to sync
   events.subscribe 'customer.subscription.created', Pay::Stripe::Webhooks::SubscriptionCreated.new
 

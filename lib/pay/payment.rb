@@ -2,8 +2,16 @@ module Pay
   class Payment
     attr_reader :payment_intent
 
+    def self.from_id(id)
+      new(::Stripe::PaymentIntent.retrieve(id))
+    end
+
     def initialize(payment_intent)
       @payment_intent = payment_intent
+    end
+
+    def id
+      payment_intent.id
     end
 
     def amount
@@ -36,6 +44,10 @@ module Pay
       elsif requires_action?
         raise Pay::ActionRequired.new(self)
       end
+    end
+
+    def confirm
+      payment_intent.confirm
     end
   end
 end

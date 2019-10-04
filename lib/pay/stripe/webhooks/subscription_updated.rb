@@ -9,6 +9,13 @@ module Pay
 
           return if subscription.nil?
 
+          # Delete any subscription attempts that have expired
+          if object.status == "incomplete_expired"
+            subscription.destroy
+            return
+          end
+
+          subscription.status         = object.status
           subscription.quantity       = object.quantity
           subscription.processor_plan = object.plan.id
           subscription.trial_ends_at  = Time.at(object.trial_end) if object.trial_end.present?

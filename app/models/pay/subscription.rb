@@ -20,6 +20,8 @@ module Pay
     scope :cancelled, ->{ where.not(ends_at: nil) }
     scope :on_grace_period, ->{ cancelled.where("? < ends_at", Time.zone.now) }
     scope :active, ->{ where(ends_at: nil).or(on_grace_period).or(on_trial) }
+    scope :incomplete, ->{ where(status: :incomplete) }
+    scope :past_due, ->{ where(status: :past_due) }
 
     attribute :prorate, :boolean, default: true
 
@@ -52,7 +54,7 @@ module Pay
     end
 
     def active?
-      ends_at.nil? || on_grace_period? || on_trial?
+      (status == "active" && ends_at.nil?) || on_grace_period? || on_trial?
     end
 
     def cancel
@@ -80,8 +82,25 @@ module Pay
       update(processor_plan: plan, ends_at: nil)
     end
 
-    def processor_subscription
-      owner.processor_subscription(processor_id)
+    def processor_subscription(options={})
+      owner.processor_subscription(processor_id, options)
+    end
+
+    def past_due?
+      status == "past_due"
+    end
+
+    def incomplete?
+      status == "incomplete"
+    end
+
+    def has_incomplete_payment?
+      past_due? || incomplete?
+    end
+
+    def latest_payment
+      return if !stripe?
+      processor_subscription(expand: ["latest_invoice.payment_intent"]).latest_invoice.payment_intent
     end
   end
 end

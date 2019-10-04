@@ -14,6 +14,10 @@ module Pay
         raise Error, e.message
       end
 
+      def create_setup_intent
+        ::Stripe::SetupIntent.create
+      end
+
       # Handles Billable#charge
       #
       # Returns Pay::Charge
@@ -37,14 +41,19 @@ module Pay
       #
       # Returns Pay::Subscription
       def create_stripe_subscription(name, plan, options={})
-        opts = { plan: plan, trial_from_plan: true }.merge(options)
+        opts = {
+          expand: ['latest_invoice.payment_intent'],
+          items: [ plan: plan ],
+          off_session: true,
+          trial_from_plan: true
+        }.merge(options)
         stripe_sub   = customer.subscriptions.create(opts)
-        subscription = create_subscription(stripe_sub, 'stripe', name, plan)
+        #subscription = create_subscription(stripe_sub, 'stripe', name, plan)
+        subscription = create_subscription(stripe_sub, 'stripe', name, plan, status: stripe_sub.status)
 
         if subscription.incomplete?
           Pay::Payment.new(stripe_sub.latest_invoice.payment_intent).validate
         end
-
         subscription
       rescue ::Stripe::StripeError => e
         raise Error, e.message
@@ -74,8 +83,8 @@ module Pay
         customer.save
       end
 
-      def stripe_subscription(subscription_id)
-        ::Stripe::Subscription.retrieve(subscription_id)
+      def stripe_subscription(subscription_id, options={})
+        ::Stripe::Subscription.retrieve(options.merge(id: subscription_id))
       end
 
       def stripe_invoice!
@@ -110,11 +119,12 @@ module Pay
       private
 
       def create_stripe_customer
-        customer = ::Stripe::Customer.create(email: email, payment_method: card_token, description: customer_name)
+        customer = ::Stripe::Customer.create(email: email, description: customer_name)
         update(processor: 'stripe', processor_id: customer.id)
 
         # Update the user's card on file if a token was passed in
         if card_token.present?
+          ::Stripe::PaymentMethod.attach(card_token, { customer: customer.id })
           customer.invoice_settings.default_payment_method = card_token
           customer.save
 
@@ -131,7 +141,7 @@ module Pay
       # Save the card to the database as the user's current card
       def update_stripe_card_on_file(card)
         update!(
-          card_type:      card.brand,
+          card_type:      card.brand.capitalize,
           card_last4:     card.last4,
           card_exp_month: card.exp_month,
           card_exp_year:  card.exp_year

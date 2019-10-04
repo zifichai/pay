@@ -62,9 +62,9 @@ module Pay
       trial_ends_at? && trial_ends_at > Time.zone.now
     end
 
-    def processor_subscription(subscription_id)
+    def processor_subscription(subscription_id, options={})
       check_for_processor
-      send("#{processor}_subscription", subscription_id)
+      send("#{processor}_subscription", subscription_id, options)
     end
 
     def subscribed?(name: 'default', processor_plan: nil)
@@ -105,22 +105,29 @@ module Pay
       braintree? && card_type == "PayPal"
     end
 
+    def has_incomplete_payment?(name: "default")
+      subscription(name: name)&.has_incomplete_payment?
+    end
+
     private
 
     def check_for_processor
       raise StandardError, "No payment processor selected. Make sure to set the #{Pay.billable_class}'s `processor` attribute to either 'stripe' or 'braintree'." unless processor
     end
 
-    def create_subscription(subscription, processor, name, plan, qty = 1)
-      subscriptions.create!(
+    # Used for creating a Pay::Subscription in the database
+    def create_subscription(subscription, processor, name, plan, options={})
+      options[:quantity] ||= 1
+
+      options.merge!(
         name: name || 'default',
         processor: processor,
         processor_id: subscription.id,
         processor_plan: plan,
         trial_ends_at: send("#{processor}_trial_end_date", subscription),
-        quantity: qty,
-        ends_at: nil
+        ends_at: nil,
       )
+      subscriptions.create!(options)
     end
 
     def default_generic_trial?(name, plan)

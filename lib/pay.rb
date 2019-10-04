@@ -1,6 +1,7 @@
 require 'pay/engine'
 require 'pay/billable'
 require 'pay/receipts'
+require 'pay/payment'
 
 module Pay
   # Define who owns the subscription
@@ -84,6 +85,8 @@ module Pay
   end
 
   class InvalidPaymentMethod < Error
+    attr_reader :payment
+
     def initialize(payment)
       @payment = payment
     end
@@ -94,6 +97,8 @@ module Pay
   end
 
   class ActionRequired < Error
+    attr_reader :payment
+
     def initialize(payment)
       @payment = payment
     end

@@ -1,5 +1,7 @@
 ### Unreleased
 
+* Stripe SCA updates
+
 ### 1.0.2
 
 * Add `on_trial_or_subscribed?` convenience method

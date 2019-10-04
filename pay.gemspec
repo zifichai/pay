@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '>= 4.2'
 
   s.add_development_dependency 'braintree', '< 3.0', '>= 2.92.0'
-  s.add_development_dependency 'stripe', '< 5.0', '>= 2.8'
+  s.add_development_dependency 'stripe', '>= 2.8'
   s.add_development_dependency 'stripe_event', '~> 2.2'
 
   s.add_development_dependency 'bundler', '< 2'

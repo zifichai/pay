@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2017_07_27_235816) do
+ActiveRecord::Schema.define(version: 2019_08_16_015720) do
 
   create_table "pay_charges", force: :cascade do |t|
     t.integer "owner_id"
@@ -38,14 +38,18 @@ ActiveRecord::Schema.define(version: 2017_07_27_235816) do
     t.datetime "ends_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string "status"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "email"
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", null: false
+    t.string "email"
     t.string "first_name"
     t.string "last_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string "processor"
     t.string "processor_id"
     t.datetime "trial_ends_at"
@@ -56,8 +60,4 @@ ActiveRecord::Schema.define(version: 2017_07_27_235816) do
     t.text "extra_billing_info"
   end
 
-  create_table :teams, force: true do |t|
-    t.string :name
-    t.integer :owner_id, null: :false
-  end
 end

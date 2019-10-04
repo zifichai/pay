@@ -11,14 +11,14 @@ module Pay
         subscription.save
 
         new_ends_at  = on_trial? ? trial_ends_at : Time.at(subscription.current_period_end)
-        update(ends_at: new_ends_at)
+        update(ends_at: new_ends_at, status: :canceled)
       rescue ::Stripe::StripeError => e
         raise Error, e.message
       end
 
       def stripe_cancel_now!
         subscription = processor_subscription.delete
-        update(ends_at: Time.zone.now)
+        update(ends_at: Time.zone.now, status: :canceled)
       rescue ::Stripe::StripeError => e
         raise Error, e.message
       end
