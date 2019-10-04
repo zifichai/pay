@@ -9,8 +9,10 @@ class Pay::Stripe::Billable::Test < ActiveSupport::TestCase
     @billable = User.new email: 'johnny@appleseed.com'
     @billable.processor = 'stripe'
 
+
     @stripe_helper = StripeMock.create_test_helper
-    @stripe_helper.create_plan(id: 'test-monthly', amount: 1500)
+    @product = @stripe_helper.create_product
+    @stripe_helper.create_plan(id: 'test-monthly', amount: 1500, product: @product.id)
     @stripe_helper.create_coupon # id: '10BUCKS'
   end
 

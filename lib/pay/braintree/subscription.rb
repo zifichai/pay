@@ -59,7 +59,7 @@ module Pay
         end
 
         if !active?
-          owner.subscribe(name, plan, processor, trial_period: false)
+          owner.subscribe(name: name, plan: plan, trial_period: false)
           return
         end
 
