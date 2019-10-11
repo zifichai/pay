@@ -1,16 +1,18 @@
-PATH
-  remote: .
-  specs:
-    pay (1.0.2)
-      rails (>= 4.2)
-
-PATH
-  remote: /Users/chris/code/stripe-ruby-mock
+GIT
+  remote: https://github.com/excid3/stripe-ruby-mock.git
+  revision: e82cc8ada833665aa5245dc95c0ba737200ea414
+  branch: payment-methods
   specs:
     stripe-ruby-mock (2.6.0)
       dante (>= 0.2.0)
       multi_json (~> 1.0)
       stripe (>= 2.0.3, < 5)
+
+PATH
+  remote: .
+  specs:
+    pay (1.0.2)
+      rails (>= 4.2)
 
 GEM
   remote: https://rubygems.org/
