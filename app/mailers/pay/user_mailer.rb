@@ -31,12 +31,12 @@ module Pay
       )
     end
 
-    def payment_action_required(user, subscription, payment_intent_id)
-      @user, @subscription, @payment_intent_id = user, subscription, payment_intent_id
+    def payment_action_required(user, payment, subscription)
+      @user, @payment, @subscription = user, payment, subscription
 
       mail(
         to: to(user),
-        subject: Pay.payment_action_required
+        subject: Pay.payment_action_required_subject
       )
     end
 

@@ -34,6 +34,10 @@ module Pay
       payment_intent.status == "canceled"
     end
 
+    def cancelled?
+      canceled?
+    end
+
     def succeeded?
       payment_intent.status == "succeeded"
     end

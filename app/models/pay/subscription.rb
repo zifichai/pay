@@ -16,22 +16,14 @@ module Pay
 
     # Scopes
     scope :for_name, ->(name) { where(name: name) }
-    scope :on_trial, ->{ where.not(trial_ends_at: nil).where("? < trial_ends_at", Time.zone.now) }
+    scope :on_trial, ->{ where.not(trial_ends_at: nil).where("trial_ends_at > ?", Time.zone.now) }
     scope :cancelled, ->{ where.not(ends_at: nil) }
-    scope :on_grace_period, ->{ cancelled.where("? < ends_at", Time.zone.now) }
+    scope :on_grace_period, ->{ cancelled.where("ends_at > ?", Time.zone.now) }
     scope :active, ->{ where(ends_at: nil).or(on_grace_period).or(on_trial) }
     scope :incomplete, ->{ where(status: :incomplete) }
     scope :past_due, ->{ where(status: :past_due) }
 
     attribute :prorate, :boolean, default: true
-
-    STATUSES.each do |stripe_status|
-      scope stripe_status.to_sym, ->{ where(status: stripe_status) }
-
-      define_method :"#{stripe_status}?" do
-        status == stripe_status
-      end
-    end
 
     def no_prorate
       self.prorate = false
@@ -55,6 +47,10 @@ module Pay
 
     def active?
       (status == "active" && ends_at.nil?) || on_grace_period? || on_trial?
+    end
+
+    def past_due?
+      status == "past_due"
     end
 
     def cancel

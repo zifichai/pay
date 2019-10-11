@@ -1,6 +1,10 @@
 ### Unreleased
 
-* Stripe SCA updates
+* [NEW] Stripe SCA support
+* `automount_webhook_routes` config option has been renamed to `automount_routes`
+* `webhooks_path` config option has been renamed to `routes_path`
+* Added `payments#show` route to handle SCA payments that require action
+* Added webhook handler for payments that require action
 
 ### 1.0.2
 

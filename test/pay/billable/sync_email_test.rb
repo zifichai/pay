@@ -1,12 +1,9 @@
 require 'test_helper'
 
 class Pay::Billable::SyncEmail::Test < ActiveSupport::TestCase
-  setup do
-    @billable = User.new
-  end
-
   test 'email sync' do
-    assert @billable.should_sync_email_with_processor?
+    billable = User.create(email: "test@test.com")
+    assert billable.should_sync_email_with_processor?
   end
 
   test 'email sync should be ignored for billable that delegates email' do

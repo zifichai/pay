@@ -20,7 +20,7 @@ module Pay
       end
 
       def should_sync_email_with_processor?
-        respond_to? :saved_change_to_email?
+        try(:saved_change_to_email?)
       end
 
       def sync_email_with_processor

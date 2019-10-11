@@ -22,9 +22,9 @@ module Pay
       require 'pay/stripe'    if defined? ::Stripe
       require 'pay/braintree' if defined? ::Braintree
 
-      if Pay.automount_webhook_routes
+      if Pay.automount_routes
         app.routes.append do
-          mount Pay::Engine, at: Pay.webhooks_path, as: 'pay'
+          mount Pay::Engine, at: Pay.routes_path, as: 'pay'
         end
       end
     end

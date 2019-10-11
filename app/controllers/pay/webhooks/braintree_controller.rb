@@ -24,9 +24,10 @@ module Pay
         subscription = event.subscription
         return if subscription.nil?
 
-        user = Pay.user_model.find_by(processor: :braintree, processor_id: subscription.id)
-        return unless user.present?
+        pay_subscription = Pay.subscription_model.find_by(processor: :braintree, processor_id: subscription.id)
+        return unless pay_subscription.present?
 
+        user = pay_subscription.owner
         charge = user.save_braintree_transaction(subscription.transactions.first)
 
         if Pay.send_emails
@@ -46,7 +47,7 @@ module Pay
       end
 
       def webhook_notification
-        @webhook_notification ||= ::Braintree::WebhookNotification.parse(
+        @webhook_notification ||= Pay.braintree_gateway.webhook_notification.parse(
           params[:bt_signature],
           params[:bt_payload]
         )

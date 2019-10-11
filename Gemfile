@@ -11,4 +11,5 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
-gem 'stripe-ruby-mock', github: 'rebelidealist/stripe-ruby-mock'
+gem 'byebug'
+gem 'stripe-ruby-mock', path: '/Users/chris/code/stripe-ruby-mock' # github: 'lumir/stripe-ruby-mock'

@@ -21,12 +21,12 @@ class Pay::Test < ActiveSupport::TestCase
     assert Pay.chargeable_table, 'charges'
   end
 
-  test 'default automount_webhook_routes is true' do
-    assert Pay.automount_webhook_routes, true
+  test 'default automount_routes is true' do
+    assert Pay.automount_routes, true
   end
 
-  test 'default webhooks_path is /webhooks' do
-    assert Pay.webhooks_path, '/webhooks'
+  test 'default routes_path is /pay' do
+    assert Pay.routes_path, '/pay'
   end
 
   test 'can set business name' do

@@ -3,7 +3,7 @@ require 'test_helper'
 class Pay::Subscription::Test < ActiveSupport::TestCase
   setup do
     @owner = User.create email: "bill@microsoft.com"
-    @subscription = Pay.subscription_model.new processor: 'stripe'
+    @subscription = Pay.subscription_model.new processor: 'stripe', status: 'active'
   end
 
   test 'belongs to the owner' do

@@ -47,8 +47,8 @@ module Pay
           off_session: true,
           trial_from_plan: true
         }.merge(options)
+
         stripe_sub   = customer.subscriptions.create(opts)
-        #subscription = create_subscription(stripe_sub, 'stripe', name, plan)
         subscription = create_subscription(stripe_sub, 'stripe', name, plan, status: stripe_sub.status)
 
         if subscription.incomplete?

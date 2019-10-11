@@ -10,12 +10,12 @@ module Pay
 
         if on_trial?
           gateway.subscription.cancel(processor_subscription.id)
-          update(ends_at: trial_ends_at)
+          update(status: :cancelled, ends_at: trial_ends_at)
         else
           gateway.subscription.update(subscription.id, {
             number_of_billing_cycles: subscription.current_billing_cycle
           })
-          update(ends_at: subscription.billing_period_end_date)
+          update(status: :cancelled, ends_at: subscription.billing_period_end_date)
         end
       rescue ::Braintree::BraintreeError => e
         raise Error, e.message
@@ -23,7 +23,7 @@ module Pay
 
       def braintree_cancel_now!
         gateway.subscription.cancel(processor_subscription.id)
-        update(ends_at: Time.zone.now)
+        update(status: :cancelled, ends_at: Time.zone.now)
       rescue ::Braintree::BraintreeError => e
         raise Error, e.message
       end
@@ -83,7 +83,7 @@ module Pay
         })
 
         if result.success?
-          update(processor_plan: braintree_plan.id, ends_at: nil)
+          update(status: :active, processor_plan: braintree_plan.id, ends_at: nil)
         else
           raise Error, "Braintree failed to swap plans: #{result.message}"
         end

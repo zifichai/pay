@@ -19,7 +19,7 @@ http_interactions:
       Accept:
       - application/xml
       User-Agent:
-      - Braintree Ruby Gem 2.92.0
+      - Braintree Ruby Gem 2.99.0
       X-Apiversion:
       - '5'
       Content-Type:
@@ -32,7 +32,7 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Tue, 11 Dec 2018 21:39:29 GMT
+      - Fri, 11 Oct 2019 00:05:55 GMT
       Content-Type:
       - application/xml; charset=utf-8
       Transfer-Encoding:
@@ -52,23 +52,23 @@ http_interactions:
       Content-Encoding:
       - gzip
       Etag:
-      - W/"f7ba4c83dd6a3fdb69eb4b15ea6ec69e"
+      - W/"73305dc33f999a574f0e2fe25b334c91"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Runtime:
-      - '0.161181'
+      - '0.129117'
       X-Request-Id:
-      - 01-1544564369.696-24.207.209.104-172814
+      - 01-1570752355.235-24.207.209.104-21605076
       Content-Security-Policy:
       - frame-ancestors 'self'
       X-Broxyid:
-      - 01-1544564369.696-24.207.209.104-172814
+      - 01-1570752355.235-24.207.209.104-21605076
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAJEuEFwAA5RRTXOCMBC9+yuY3CMGxipOwJ76C+ylt22yaDok0GSp4K8voKOdoT30+L5238yT+85W0Rf6YGqXM7FcsQidqrVxx5y9Hl74lu2LhVRtoNqiLxZRJI0u1ttN+iSyTSrjAY3kIKoTOOIDvvTlublQbz8+tVLro4x/qqO7ND4Qd2AxcqbKGfkWWTxJFfylqNo24PoZjxZMVRAGesYObFPhcrDK+MqPjuZUu/m9EroZd8b3YOiX3x6BUHOgiPoGc6YHSMYiK5KV2HKRcCEOidil2S7J3mT8CEz5ttH/yz8C1//TALw0WOlwr6QNcQVeh9tR8B76W2PQ2mMIONOGbvc1vwEAAP//AwCJcO0eAAIAAA==
+        H4sIAGPHn10AA5RRz0/CMBS+81csvZet4AyQbngwmpjAaRrl9ljfRk3bzbbIxl/vBkRMpgeP36++9/XxZaNV8InWycokhI0jEqDJKyFNmZDn7IHOyDId8XzvfKXRpqMg4FKkbBrfTFk8u+Vhh3qyE/MdGE87fGyLQ330rX7/EHkelzz8qfbuQlrnqQGNgZEqId7ukYQnScFfSl7pGkw74FGDVKlH5++wAV0rHHdWHp753lHvKjN8r4BmwB1w66T/ZbZF8Cgo+MC3NSZEdNBLjSSdRGxOWUQZy6JoEcWLON7w8Bo45fe1+F/+GjjPPx2AFhKVcOeVSlVtQfU/+jZ9OYrHud+8PhWrbMXW96tmnZUTHl49lxJCepqDFe6yBlgL7aUjCGHRORxoXZvv+38BAAD//wMAN/9l2jICAAA=
     http_version: 
-  recorded_at: Tue, 11 Dec 2018 21:39:30 GMT
-recorded_with: VCR 4.0.0
+  recorded_at: Fri, 11 Oct 2019 00:05:55 GMT
+recorded_with: VCR 5.0.0

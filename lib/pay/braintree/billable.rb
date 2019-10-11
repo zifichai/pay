@@ -59,7 +59,7 @@ module Pay
         result = gateway.subscription.create(subscription_options)
         raise Pay::Error.new(result.message) unless result.success?
 
-        create_subscription(result.subscription, 'braintree', name, plan)
+        create_subscription(result.subscription, 'braintree', name, plan, status: :active)
       rescue ::Braintree::BraintreeError => e
         raise Error, e.message
       end

@@ -1,17 +1,16 @@
-GIT
-  remote: https://github.com/rebelidealist/stripe-ruby-mock.git
-  revision: 7c351eebc33ccc679cabc318739c17f93bb9db99
-  specs:
-    stripe-ruby-mock (2.6.0)
-      dante (>= 0.2.0)
-      multi_json (~> 1.0)
-      stripe (>= 2.0.3, < 5)
-
 PATH
   remote: .
   specs:
     pay (1.0.2)
       rails (>= 4.2)
+
+PATH
+  remote: /Users/chris/code/stripe-ruby-mock
+  specs:
+    stripe-ruby-mock (2.6.0)
+      dante (>= 0.2.0)
+      multi_json (~> 1.0)
+      stripe (>= 2.0.3, < 5)
 
 GEM
   remote: https://rubygems.org/

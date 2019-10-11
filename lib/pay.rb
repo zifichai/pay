@@ -38,12 +38,14 @@ module Pay
   @@email_refund_subject = 'Payment refunded'
   mattr_accessor :email_renewing_subject
   @@email_renewing_subject = 'Your upcoming subscription renewal'
+  mattr_accessor :email_action_required_subject
+  @@email_action_required_subject = 'Confirm your payment'
 
-  mattr_accessor :automount_webhook_routes
-  @@automount_webhook_routes = true
+  mattr_accessor :automount_routes
+  @@automount_routes = true
 
-  mattr_accessor :webhooks_path
-  @@webhooks_path = '/webhooks'
+  mattr_accessor :routes_path
+  @@routes_path = '/pay'
 
   def self.setup
     yield self
