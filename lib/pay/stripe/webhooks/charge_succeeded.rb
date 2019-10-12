@@ -20,16 +20,16 @@ module Pay
 
         def create_charge(user, object)
           charge = user.charges.find_or_initialize_by(
-            processor:      :stripe,
-            processor_id:   object.id,
+            processor:    :stripe,
+            processor_id: object.id,
           )
 
           charge.update(
             amount:         object.amount,
-            card_last4:     object.source.last4,
-            card_type:      object.source.brand,
-            card_exp_month: object.source.exp_month,
-            card_exp_year:  object.source.exp_year,
+            card_last4:     object.payment_method_details.card.last4,
+            card_type:      object.payment_method_details.card.brand,
+            card_exp_month: object.payment_method_details.card.exp_month,
+            card_exp_year:  object.payment_method_details.card.exp_year,
             created_at:     Time.zone.at(object.created)
           )
 

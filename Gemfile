@@ -12,4 +12,4 @@ gemspec
 # your gem to rubygems.org.
 
 gem 'byebug'
-gem 'stripe-ruby-mock', github: 'excid3/stripe-ruby-mock', branch: "payment-methods"
+gem 'stripe-ruby-mock', github: 'rebelidealist/stripe-ruby-mock'

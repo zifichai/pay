@@ -2,7 +2,7 @@ module Pay
   module Stripe
     module Webhooks
 
-      class SourceDeleted
+      class PaymentMethodUpdated
         def call(event)
           object = event.data.object
           user = Pay.user_model.find_by(processor: :stripe, processor_id: object.customer)

@@ -32,5 +32,8 @@ StripeEvent.configure do |events|
   events.subscribe 'customer.deleted', Pay::Stripe::Webhooks::CustomerDeleted.new
 
   # If a customer's payment source was deleted in Stripe, we should update as well
-  events.subscribe 'customer.source.deleted', Pay::Stripe::Webhooks::SourceDeleted.new
+  events.subscribe 'payment_method.attached', Pay::Stripe::Webhooks::PaymentMethodUpdated.new
+  events.subscribe 'payment_method.updated', Pay::Stripe::Webhooks::PaymentMethodUpdated.new
+  events.subscribe 'payment_method.card_automatically_updated', Pay::Stripe::Webhooks::PaymentMethodUpdated.new
+  events.subscribe 'payment_method.detached', Pay::Stripe::Webhooks::PaymentMethodUpdated.new
 end

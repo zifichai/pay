@@ -46,7 +46,7 @@ module Pay
     end
 
     def active?
-      (status == "active" && ends_at.nil?) || on_grace_period? || on_trial?
+      ends_at.nil? || on_grace_period? || on_trial?
     end
 
     def past_due?

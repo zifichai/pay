@@ -24,15 +24,17 @@ module Pay
       def create_stripe_charge(amount, options={})
         args = {
           amount: amount,
+          confirm: true,
           currency: 'usd',
           customer: customer.id,
-          description: customer_name,
+          payment_method: stripe_customer.invoice_settings.default_payment_method
         }.merge(options)
 
-        stripe_charge = ::Stripe::Charge.create(args)
+        payment_intent = ::Stripe::PaymentIntent.create(args)
+        Pay::Payment.new(payment_intent).validate
 
-        # Save the charge to the db, returns Charge
-        Pay::Stripe::Webhooks::ChargeSucceeded.new.create_charge(self, stripe_charge)
+        Stripe::Webhooks::ChargeSucceeded.new.create_charge(self, charges.first)
+
       rescue ::Stripe::StripeError => e
         raise Error, e.message
       end
@@ -99,18 +101,18 @@ module Pay
       # Used by webhooks when the customer or source changes
       def sync_card_from_stripe
         stripe_cust = stripe_customer
-        default_source_id = stripe_cust.default_source
+        default_payment_method_id = stripe_cust.invoice_settings.default_payment_method
 
-        if default_source_id.present?
-          card = stripe_customer.sources.data.find{ |s| s.id == default_source_id }
+        if default_payment_method_id.present?
+          payment_method = ::Stripe::PaymentMethod.retrieve(default_payment_method_id)
           update(
-            card_type:      card.brand,
-            card_last4:     card.last4,
-            card_exp_month: card.exp_month,
-            card_exp_year:  card.exp_year
+            card_type:      payment_method.card.brand,
+            card_last4:     payment_method.card.last4,
+            card_exp_month: payment_method.card.exp_month,
+            card_exp_year:  payment_method.card.exp_year
           )
 
-        # Customer has no default payment source
+        # Customer has no default payment method
         else
           update(card_type: nil, card_last4: nil)
         end
