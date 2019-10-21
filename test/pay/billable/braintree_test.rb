@@ -15,7 +15,7 @@ class Pay::Braintree::Billable::Test < ActiveSupport::TestCase
 
   test 'can store card' do
     @billable.card_token = 'fake-valid-visa-nonce'
-    result = @billable.customer
+    @billable.customer
 
     assert_equal 'Visa', @billable.card_type
     assert_nil @billable.card_token

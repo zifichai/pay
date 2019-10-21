@@ -8,7 +8,7 @@ class Pay::Stripe::Webhooks::SubscriptionUpdatedTest < ActiveSupport::TestCase
 
   test "nothing happens if a subscription can't be found" do
     @user = User.create!(email: 'gob@bluth.com', processor: :stripe, processor_id: @event.data.object.customer)
-    subscription = @user.subscriptions.create!(processor: :stripe, processor_id: 'does-not-exist', name: 'default', processor_plan: 'some-plan')
+    @user.subscriptions.create!(processor: :stripe, processor_id: 'does-not-exist', name: 'default', processor_plan: 'some-plan')
 
     Pay.subscription_model.any_instance.expects(:save).never
     Pay::Stripe::Webhooks::SubscriptionUpdated.new.call(@event)

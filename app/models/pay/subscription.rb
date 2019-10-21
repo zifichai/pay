@@ -61,6 +61,10 @@ module Pay
       status == "incomplete"
     end
 
+    def has_incomplete_payment?
+      past_due? || incomplete?
+    end
+
     def cancel
       send("#{processor}_cancel")
     end
@@ -93,18 +97,6 @@ module Pay
 
     def processor_subscription(options={})
       owner.processor_subscription(processor_id, options)
-    end
-
-    def past_due?
-      status == "past_due"
-    end
-
-    def incomplete?
-      status == "incomplete"
-    end
-
-    def has_incomplete_payment?
-      past_due? || incomplete?
     end
 
     def latest_payment

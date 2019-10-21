@@ -12,7 +12,7 @@ class Pay::Stripe::Webhooks::CustomerUpdatedTest < ActiveSupport::TestCase
       processor: :stripe,
       processor_id: @event.data.object.id
     )
-    subscription = user.subscriptions.create!(
+    user.subscriptions.create!(
       processor: :stripe,
       processor_id: 'sub_someid',
       name: 'default',
@@ -29,7 +29,7 @@ class Pay::Stripe::Webhooks::CustomerUpdatedTest < ActiveSupport::TestCase
       processor: :stripe,
       processor_id: "does-not-exist"
     )
-    subscription = user.subscriptions.create!(
+    user.subscriptions.create!(
       processor: :stripe,
       processor_id: 'sub_someid',
       name: 'default',

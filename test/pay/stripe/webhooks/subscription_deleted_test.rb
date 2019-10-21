@@ -12,7 +12,7 @@ class Pay::Stripe::Webhooks::SubscriptionDeletedTest < ActiveSupport::TestCase
       processor: :stripe,
       processor_id: @event.data.object.customer
     )
-    subscription = @user.subscriptions.create!(
+    @user.subscriptions.create!(
       processor: :stripe,
       processor_id: @event.data.object.id,
       name: 'default',
@@ -29,7 +29,7 @@ class Pay::Stripe::Webhooks::SubscriptionDeletedTest < ActiveSupport::TestCase
       processor: :stripe,
       processor_id: @event.data.object.customer
     )
-    subscription = @user.subscriptions.create!(
+    @user.subscriptions.create!(
       processor: :stripe,
       processor_id: @event.data.object.id,
       name: 'default',
@@ -47,7 +47,7 @@ class Pay::Stripe::Webhooks::SubscriptionDeletedTest < ActiveSupport::TestCase
       processor: :stripe,
       processor_id: @event.data.object.customer
     )
-    subscription = @user.subscriptions.create!(
+    @user.subscriptions.create!(
       processor: :stripe,
       processor_id: 'does-not-exist',
       name: 'default',

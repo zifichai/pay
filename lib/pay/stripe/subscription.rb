@@ -17,7 +17,7 @@ module Pay
       end
 
       def stripe_cancel_now!
-        subscription = processor_subscription.delete
+        processor_subscription.delete
         update(ends_at: Time.zone.now, status: :canceled)
       rescue ::Stripe::StripeError => e
         raise Error, e.message
