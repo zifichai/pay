@@ -25,9 +25,9 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency 'braintree', '< 3.0', '>= 2.92.0'
   s.add_development_dependency 'stripe', '>= 2.8'
-  s.add_development_dependency 'stripe_event', '~> 2.2'
+  s.add_development_dependency 'stripe_event', '~> 2.3'
 
-  s.add_development_dependency 'bundler', '< 2'
+  s.add_development_dependency 'bundler'
   s.add_development_dependency 'byebug'
   s.add_development_dependency 'minitest-rails',  '~> 3'
   s.add_development_dependency 'mocha'

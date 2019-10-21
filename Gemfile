@@ -12,4 +12,3 @@ gemspec
 # your gem to rubygems.org.
 
 gem 'byebug'
-gem 'stripe-ruby-mock', github: 'rebelidealist/stripe-ruby-mock'

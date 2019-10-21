@@ -189,6 +189,7 @@ class Pay::Subscription::Test < ActiveSupport::TestCase
 
   test 'can swap plans' do
     stripe_sub = mock('stripe_subscription')
+    stripe_sub.expects(:cancel_at_period_end=)
     stripe_sub.expects(:plan=).returns("yearly")
     stripe_sub.expects(:prorate=)
     stripe_sub.expects(:trial_end=)
@@ -200,6 +201,18 @@ class Pay::Subscription::Test < ActiveSupport::TestCase
     @subscription.swap("yearly")
 
     assert_equal "yearly", @subscription.processor_subscription.plan
+  end
+
+  test 'statuses affect active state' do
+    %w{ trialing active }.each do |state|
+      @subscription.status = state
+      assert @subscription.active?
+    end
+
+    %w{ incomplete incomplete_expired past_due canceled unpaid }.each do |state|
+      @subscription.status = state
+      assert_not @subscription.active?
+    end
   end
 
   private

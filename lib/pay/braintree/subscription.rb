@@ -10,12 +10,12 @@ module Pay
 
         if on_trial?
           gateway.subscription.cancel(processor_subscription.id)
-          update(status: :cancelled, ends_at: trial_ends_at)
+          update(status: :canceled, ends_at: trial_ends_at)
         else
           gateway.subscription.update(subscription.id, {
             number_of_billing_cycles: subscription.current_billing_cycle
           })
-          update(status: :cancelled, ends_at: subscription.billing_period_end_date)
+          update(status: :canceled, ends_at: subscription.billing_period_end_date)
         end
       rescue ::Braintree::BraintreeError => e
         raise Error, e.message
@@ -23,13 +23,13 @@ module Pay
 
       def braintree_cancel_now!
         gateway.subscription.cancel(processor_subscription.id)
-        update(status: :cancelled, ends_at: Time.zone.now)
+        update(status: :canceled, ends_at: Time.zone.now)
       rescue ::Braintree::BraintreeError => e
         raise Error, e.message
       end
 
       def braintree_resume
-        if cancelled? && on_trial?
+        if canceled? && on_trial?
           duration = trial_ends_at.to_date - Date.today
 
           owner.subscribe(
@@ -48,6 +48,8 @@ module Pay
             number_of_billing_cycles: nil
           })
         end
+
+        update(status: :active)
       rescue ::Braintree::BraintreeError => e
         raise Error, e.message
       end

@@ -14,7 +14,6 @@ require "minitest/rails"
 require 'braintree'
 require 'stripe'
 require 'stripe_event'
-require 'stripe_mock'
 
 # Filter out Minitest backtrace while allowing backtrace from other libraries
 # to be shown.
@@ -59,5 +58,15 @@ module Braintree
     def self.gateway
       Pay.braintree_gateway
     end
+  end
+end
+
+class ActiveSupport::TestCase
+  setup do
+    VCR.insert_cassette name
+  end
+
+  teardown do
+    VCR.eject_cassette name
   end
 end

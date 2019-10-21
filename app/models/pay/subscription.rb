@@ -37,20 +37,28 @@ module Pay
       trial_ends_at? && Time.zone.now < trial_ends_at
     end
 
-    def cancelled?
+    def canceled?
       ends_at?
     end
 
+    def cancelled?
+      canceled?
+    end
+
     def on_grace_period?
-      cancelled? && Time.zone.now < ends_at
+      canceled? && Time.zone.now < ends_at
     end
 
     def active?
-      ends_at.nil? || on_grace_period? || on_trial?
+      ["trialing", "active"].include?(status) && (ends_at.nil? || on_grace_period? || on_trial?)
     end
 
     def past_due?
       status == "past_due"
+    end
+
+    def incomplete?
+      status == "incomplete"
     end
 
     def cancel
@@ -76,6 +84,11 @@ module Pay
     def swap(plan)
       send("#{processor}_swap", plan)
       update(processor_plan: plan, ends_at: nil)
+    end
+
+    def swap_and_invoice(plan)
+      swap(plan)
+      owner.invoice!(subscription_id: processor_id)
     end
 
     def processor_subscription(options={})

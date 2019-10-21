@@ -85,8 +85,8 @@ module Pay
       subscriptions.for_name(name).last
     end
 
-    def invoice!
-      send("#{processor}_invoice!")
+    def invoice!(options={})
+      send("#{processor}_invoice!", options)
     end
 
     def upcoming_invoice

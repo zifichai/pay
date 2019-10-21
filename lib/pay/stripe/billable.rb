@@ -22,18 +22,21 @@ module Pay
       #
       # Returns Pay::Charge
       def create_stripe_charge(amount, options={})
+        customer = stripe_customer
         args = {
           amount: amount,
           confirm: true,
+          confirmation_method: :automatic,
           currency: 'usd',
           customer: customer.id,
-          payment_method: stripe_customer.invoice_settings.default_payment_method
+          payment_method: customer.invoice_settings.default_payment_method
         }.merge(options)
 
         payment_intent = ::Stripe::PaymentIntent.create(args)
         Pay::Payment.new(payment_intent).validate
 
-        Stripe::Webhooks::ChargeSucceeded.new.create_charge(self, charges.first)
+        # Create a new charge object
+        Stripe::Webhooks::ChargeSucceeded.new.create_charge(self, payment_intent.charges.first)
 
       rescue ::Stripe::StripeError => e
         raise Error, e.message
@@ -89,9 +92,9 @@ module Pay
         ::Stripe::Subscription.retrieve(options.merge(id: subscription_id))
       end
 
-      def stripe_invoice!
+      def stripe_invoice!(options={})
         return unless processor_id?
-        ::Stripe::Invoice.create(customer: processor_id).pay
+        ::Stripe::Invoice.create(options.merge(customer: processor_id)).pay
       end
 
       def stripe_upcoming_invoice

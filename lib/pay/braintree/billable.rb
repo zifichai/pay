@@ -110,7 +110,7 @@ module Pay
         gateway.subscription.find(subscription_id)
       end
 
-      def braintree_invoice!
+      def braintree_invoice!(options={})
         # pass
       end
 

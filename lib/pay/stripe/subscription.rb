@@ -35,6 +35,7 @@ module Pay
 
       def stripe_swap(plan)
         subscription = processor_subscription
+        subscription.cancel_at_period_end = false
         subscription.plan = plan
         subscription.prorate = prorate
         subscription.trial_end = on_trial? ? trial_ends_at.to_i : 'now'
