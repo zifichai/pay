@@ -34,8 +34,8 @@ class Pay::Stripe::Billable::Test < ActiveSupport::TestCase
     assert_equal 2900, charge.amount
   end
 
-  test 'fails when charging a SCA card' do
-    exception = assert_raises(Pay::Error) do
+  test 'raises action required error when SCA required' do
+    exception = assert_raises(Pay::ActionRequired) do
       @billable.card_token = sca_payment_method.id
       @billable.charge(2900)
     end
@@ -51,6 +51,15 @@ class Pay::Stripe::Billable::Test < ActiveSupport::TestCase
     assert_equal 'small-monthly', @billable.subscription.processor_plan
   end
 
+  test 'can swap a subscription' do
+    @billable.card_token = payment_method.id
+    subscription = @billable.subscribe(name: 'default', plan: 'small-monthly')
+    subscription.swap('small-annual')
+    assert @billable.subscribed?
+    assert_equal 'default', @billable.subscription.name
+    assert_equal 'small-annual', @billable.subscription.processor_plan
+  end
+
   test 'fails when subscribing with no payment method' do
     exception = assert_raises(Pay::Error) do
       @billable.subscribe(name: 'default', plan: 'small-monthly')
@@ -59,7 +68,7 @@ class Pay::Stripe::Billable::Test < ActiveSupport::TestCase
   end
 
   test 'fails when subscribing with SCA card' do
-    exception = assert_raises(Pay::Error) do
+    exception = assert_raises(Pay::ActionRequired) do
       @billable.card_token = sca_payment_method.id
       @billable.subscribe(name: 'default', plan: 'small-monthly')
     end
