@@ -83,7 +83,7 @@
       if (this.status == "requires_action") {
         this.paymentProcessing = true
         this.paymentProcessed = false
-        stripe.handleCardPayment(this.clientSecret).then(this.handleConfirmResult.bind(this))
+        stripe.handleCardPayment(this.clientSecret, { setup_future_usage: 'off_session' }).then(this.handleConfirmResult.bind(this))
       }
 
       // Setup elements in case the authentication fails and user needs to put in a new card
@@ -105,7 +105,9 @@
           {
             payment_method_data: {
               billing_details: { name: this.name }
-            }
+            },
+            save_payment_method: true,
+            setup_future_usage: 'off_session',
           }
         ).then(this.handleConfirmResult.bind(this))
       },
