@@ -63,6 +63,8 @@
   var app = new Vue({
     el: '#app',
     data: {
+      clientSecret: '<%= @payment.client_secret %>',
+      status: '<%= @payment.status %>',
       name: '',
       cardElement: null,
       paymentProcessing: false,
@@ -70,41 +72,58 @@
       successMessage: '',
       errorMessage: ''
     },
-    <% if !@payment.succeeded? && !@payment.canceled? %>
+
     mounted: function () {
+      if (this.status == "succeeded" || this.status == "canceled") {
+        return
+      }
+
+      // We can trigger SCA immediately if this payment requires action
+      // This makes sure a new SCA subscription doesn't have to put in their card twice
+      if (this.status == "requires_action") {
+        this.paymentProcessing = true
+        this.paymentProcessed = false
+        stripe.handleCardPayment(this.clientSecret).then(this.handleConfirmResult.bind(this))
+      }
+
+      // Setup elements in case the authentication fails and user needs to put in a new card
       const elements = stripe.elements();
       this.cardElement = elements.create('card');
       this.cardElement.mount('#card-element');
     },
-    <% end %>
+
     methods: {
       confirmPayment: function () {
-        var self = this;
-        this.paymentProcessing = true;
-        this.paymentProcessed = false;
-        this.successMessage = '';
-        this.errorMessage = '';
+        this.paymentProcessing = true
+        this.paymentProcessed = false
+        this.successMessage = ''
+        this.errorMessage = ''
+
         stripe.handleCardPayment(
-          '<%= @payment.client_secret %>', this.cardElement, {
+          this.clientSecret,
+          this.cardElement,
+          {
             payment_method_data: {
               billing_details: { name: this.name }
             }
           }
-        ).then(function (result) {
-          self.paymentProcessing = false;
-          if (result.error) {
-            if (result.error.code === 'parameter_invalid_empty' &&
-              result.error.param === 'payment_method_data[billing_details][name]') {
-              self.errorMessage = '<%=t "requires_action.name_missing" %>';
-            } else {
-              self.errorMessage = result.error.message;
-            }
-          } else {
-            self.paymentProcessed = true;
-            self.successMessage = '<%=t "requires_action.success" %>';
-          }
-        });
+        ).then(this.handleConfirmResult.bind(this))
       },
+
+      handleConfirmResult(result) {
+        this.paymentProcessing = false;
+        if (result.error) {
+          if (result.error.code === 'parameter_invalid_empty' &&
+            result.error.param === 'payment_method_data[billing_details][name]') {
+            this.errorMessage = '<%=t "requires_action.name_missing" %>'
+          } else {
+            this.errorMessage = result.error.message
+          }
+        } else {
+          this.paymentProcessed = true;
+          this.successMessage = '<%=t "requires_action.success" %>'
+        }
+      }
     },
   })
 </script>
