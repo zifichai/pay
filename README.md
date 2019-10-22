@@ -311,7 +311,9 @@ Plan is the plan ID from the payment processor.
 
 ##### Options
 
-They do something?
+By default, the trial specified on the subscription will be used.
+
+`trial_period_days: 30` can be set to override and a trial to the subscription. This works the same for Braintree and Stripe.
 
 #### Retrieving a Subscription from the Database
 

@@ -169,6 +169,14 @@ class Pay::Stripe::Billable::Test < ActiveSupport::TestCase
     assert_equal '10BUCKS', subscription.processor_subscription.discount.coupon.id
   end
 
+  test 'stripe trial period options' do
+    @billable.card_token = payment_method.id
+    subscription = @billable.subscribe(plan: 'small-monthly', trial_period_days: 15)
+    assert_equal "trialing", subscription.status
+    assert_not_nil subscription.trial_ends_at
+    assert subscription.trial_ends_at > 14.days.from_now
+  end
+
   private
 
     def payment_method

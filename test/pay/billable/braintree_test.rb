@@ -77,4 +77,13 @@ class Pay::Braintree::Billable::Test < ActiveSupport::TestCase
     Pay::EmailSyncJob.expects(:perform_later).with(@billable.id)
     @billable.update(email: "mynewemail@example.org")
   end
+
+  test 'braintree trial period options' do
+    @billable.card_token = 'fake-valid-visa-nonce'
+    subscription = @billable.subscribe(trial_period_days: 15)
+    # Braintree subscriptions don't use trialing status for simplicity
+    assert_equal "active", subscription.status
+    assert_not_nil subscription.trial_ends_at
+    assert subscription.trial_ends_at > 14.days.from_now
+  end
 end

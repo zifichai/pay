@@ -1,12 +1,15 @@
 ### Unreleased
 
 * [NEW] Stripe SCA support
-* `automount_webhook_routes` config option has been renamed to `automount_routes`
-* `webhooks_path` config option has been renamed to `routes_path`
+* [BREAKING] Drops Ruby 2.4 support
+* [BREAKING] `automount_webhook_routes` config option has been renamed to `automount_routes`
+* [BREAKING]`webhooks_path` config option has been renamed to `routes_path`
 * Added `status` column to payments to keep in sync with Stripe. We're
   also adding statuses to Braintree subscriptions to keep them in sync.
 * Added `payments#show` route to handle SCA payments that require action
 * Added webhook handler for payments that require action
+* Added `trial_period_days` when creating a subscription that works the
+  same on Stripe and Braintree
 
 ### 1.0.2
 

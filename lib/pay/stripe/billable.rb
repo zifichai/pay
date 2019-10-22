@@ -50,8 +50,10 @@ module Pay
           expand: ['latest_invoice.payment_intent'],
           items: [ plan: plan ],
           off_session: true,
-          trial_from_plan: true
         }.merge(options)
+
+        # Inherit trial from plan unless trial override was specified
+        opts[:trial_from_plan] = true if !opts[:trial_period_days]
 
         stripe_sub   = customer.subscriptions.create(opts)
         subscription = create_subscription(stripe_sub, 'stripe', name, plan, status: stripe_sub.status)

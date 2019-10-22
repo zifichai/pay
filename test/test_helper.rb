@@ -9,6 +9,7 @@ ActiveRecord::Migrator.migrations_paths = [File.expand_path("../../test/dummy/db
 ActiveRecord::Migrator.migrations_paths << File.expand_path('../../db/migrate', __FILE__)
 require "rails/test_help"
 require "minitest/rails"
+require "byebug"
 
 # Processors for testing
 require 'braintree'

@@ -51,6 +51,11 @@ module Pay
         token = customer.payment_methods.find(&:default?).try(:token)
         raise Pay::Error, "Customer has no default payment method" if token.nil?
 
+        # Standardize the trial period options
+        if (trial_period_days = options.delete(:trial_period_days))
+          options.merge!(trial_period: true, trial_duration: trial_period_days, trial_duration_unit: :day)
+        end
+
         subscription_options = options.merge(
           payment_method_token: token,
           plan_id: plan
