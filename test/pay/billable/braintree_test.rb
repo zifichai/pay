@@ -85,6 +85,6 @@ class Pay::Braintree::Billable::Test < ActiveSupport::TestCase
     assert_equal "active", subscription.status
     assert_not_nil subscription.trial_ends_at
     # Time.zone may not match the timezone in your Braintree account, so we'll be lenient on this assertion
-    assert subscription.trial_ends_at > 13.days.from_now
+    assert subscription.trial_ends_at > 14.days.from_now
   end
 end
