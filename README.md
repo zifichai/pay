@@ -119,6 +119,16 @@ You can also use the `STRIPE_PRIVATE_KEY` and `STRIPE_SIGNING_SECRET` environmen
 
 Our Stripe integration **requires** the use of Payment Method objects to correctly support Strong Customer Authentication with Stripe. If you've previously been using card tokens, you'll need to upgrade your Javascript integration.
 
+Subscriptions that require SCA are marked as `incomplete` by default.
+Once payment is authenticated, Stripe will send a webhook updating the
+status of the subscription. You'll need to use the [Stripe CLI](https://github.com/stripe/stripe-cli) to forward
+webhooks to your application to make sure your subscriptions work
+correctly for SCA payments.
+
+```bash
+stripe listen --forward-to localhost:3000/pay/webhooks/stripe
+```
+
 You should use `stripe.handleCardSetup` on the client to collect card information anytime you want to save the card and charge them later (adding a card, then charging them on the next page for example). Use `stripe.handleCardPayment` if you'd like to charge the customer immediately (think checking out of a shopping cart).
 
 **Payment Confirmations**
