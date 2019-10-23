@@ -8,27 +8,23 @@ class Pay::Braintree::Charge::Test < ActiveSupport::TestCase
   end
 
   test 'can partially refund a transaction' do
-    VCR.use_cassette('braintree-partial-refund') do
-      @billable.card_token = 'fake-valid-visa-nonce'
+    @billable.card_token = 'fake-valid-visa-nonce'
 
-      charge = @billable.charge(29_00)
-      assert charge.present?
+    charge = @billable.charge(29_00)
+    assert charge.present?
 
-      charge.refund!(10_00)
-      assert_equal 10_00, charge.amount_refunded
-    end
+    charge.refund!(10_00)
+    assert_equal 10_00, charge.amount_refunded
   end
 
   test 'can fully refund a transaction' do
-    VCR.use_cassette('braintree-full-refund') do
-      @billable.card_token = 'fake-valid-visa-nonce'
+    @billable.card_token = 'fake-valid-visa-nonce'
 
-      charge = @billable.charge(37_00)
-      assert charge.present?
+    charge = @billable.charge(37_00)
+    assert charge.present?
 
-      charge.refund!
-      assert_equal 37_00, charge.amount_refunded
-    end
+    charge.refund!
+    assert_equal 37_00, charge.amount_refunded
   end
 
   test 'you can ask the charge for the type' do

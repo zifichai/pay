@@ -100,7 +100,8 @@ module Pay
 
       def braintree_trial_end_date(subscription)
         return unless subscription.trial_period
-        Time.zone.parse(subscription.first_billing_date)
+        # Braintree doesn't specify any sort of timestamp here, so we'll do our best
+        Time.parse(subscription.first_billing_date)
       end
 
       def update_subscriptions_to_payment_method(token)
