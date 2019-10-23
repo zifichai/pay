@@ -11,6 +11,8 @@ module Pay
           subscription_charged_successfully(webhook_notification)
         when 'subscription_canceled'
           subscription_canceled(webhook_notification)
+        when 'subscription_trial_ended'
+          subscription_trial_ended(webhook_notification)
         end
 
         render json: { success: true }, status: :ok
@@ -44,6 +46,16 @@ module Pay
 
         # User canceled or failed to make payments
         user.update(braintree_subscription_id: nil)
+      end
+
+      def subscription_trial_ended(event)
+        subscription = event.subscription
+        return if subscription.nil?
+
+        pay_subscription = Pay.subscription_model.find_by(processor: :braintree, processor_id: subscription.id)
+        return unless pay_subscription.present?
+
+        pay_subscription.update(trial_ends_at: Time.zone.now)
       end
 
       def webhook_notification

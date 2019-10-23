@@ -32,7 +32,7 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Wed, 23 Oct 2019 00:40:21 GMT
+      - Wed, 23 Oct 2019 01:32:50 GMT
       Content-Type:
       - application/xml; charset=utf-8
       Transfer-Encoding:
@@ -52,25 +52,25 @@ http_interactions:
       Content-Encoding:
       - gzip
       Etag:
-      - W/"1bdf2bafd6c5da1e5d1dbebff6541042"
+      - W/"92fc325f1809e0120b53ffdee6c7acbb"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Runtime:
-      - '0.717358'
+      - '0.757683'
       X-Request-Id:
-      - 01-1571791220.427-65.114.64.250-9960204
+      - 02-1571794370.038-65.114.64.250-10675109
       Content-Security-Policy:
       - frame-ancestors 'self'
       X-Broxyid:
-      - 01-1571791220.427-65.114.64.250-9960204
+      - 02-1571794370.038-65.114.64.250-10675109
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        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
+        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
     http_version: 
-  recorded_at: Wed, 23 Oct 2019 00:40:21 GMT
+  recorded_at: Wed, 23 Oct 2019 01:32:50 GMT
 - request:
     method: post
     uri: https://api.sandbox.braintreegateway.com/merchants/zyfwpztymjqdcc5g/subscriptions
@@ -82,7 +82,7 @@ http_interactions:
           <trial-period type="boolean">true</trial-period>
           <trial-duration type="integer">15</trial-duration>
           <trial-duration-unit>day</trial-duration-unit>
-          <payment-method-token>8cxzrv</payment-method-token>
+          <payment-method-token>cqjnqq</payment-method-token>
           <plan-id>default</plan-id>
         </subscription>
     headers:
@@ -104,7 +104,7 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Wed, 23 Oct 2019 00:40:57 GMT
+      - Wed, 23 Oct 2019 01:32:51 GMT
       Content-Type:
       - application/xml; charset=utf-8
       Transfer-Encoding:
@@ -124,23 +124,23 @@ http_interactions:
       Content-Encoding:
       - gzip
       Etag:
-      - W/"4d8a63d310833d9e9d62b5f3ae526457"
+      - W/"4e99615d67c312cf7a98532953e15a4b"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Runtime:
-      - '0.335275'
+      - '0.336993'
       X-Request-Id:
-      - 01-1571791257.119-65.114.64.250-9969887
+      - 02-1571794371.028-65.114.64.250-10675313
       Content-Security-Policy:
       - frame-ancestors 'self'
       X-Broxyid:
-      - 01-1571791257.119-65.114.64.250-9969887
+      - 02-1571794371.028-65.114.64.250-10675313
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIAJmhr10AA5RVy27bMBC85ysM3RnJbpOmgay0QNEfaHLpjSY3EVuJFJZkYPXruyTlhywmaC+GtTuz3MdwWT/s+271CmiV0dtifV0VK9DCSKVftsXT43d2Vzw0V7X1OytQDY5gzdVqVXMpmdF25cYBtgVH5GNRRs+Od1wLaKrrqqrLw1f0qK6juEzykZln1hvt2imA0g5eAIvmligZ2Iw/ACojGWhJGAcrrbpt4dDDIYM5zjqOLo8UCGSWjLspj4Byqoei2VTrz2xdsc2Hx6q6/1jd33z6WZcnQuT7Qf4f/0RI53tE0I4dMhaj6OCyJdTFLC5GoCZZNnBLBfplfVJZYbx2uTk9c9V5BBYBmTNn/sRQaE85xIaeqj5UvGYVzXAJjRGUbDZ3t+O4qUv6Gyw9oGg5lcZFPIiRfeBjXeYcgaCB1MpgPyiEQ1k7YzrgumhC6XU5g0ykfcqG8T6Ws07qXNhn4DMNvUFbIhYB3m3TApn4vt9RAaT92bztYrwDV5K5Fo1/afMCp1b2QTg9uJaSdOY36OZO7P/ga11mnZFFdzb0W8Iz950j5GSITlR0n6dOpI9gplvmvG2+CqdeaQbTZ/A4VLwjeSIP2+NSaeubupwjMiTmtXKNDLrIOU6ENIy8LM4R6XZA2mkGw2doPO8XLQwVt0bn7B67RcPLedDjGaHyS6xDri0XwZe7oKmFrFWWgo0zwJTAhCC5J+VFY1g/5OiHf1xJR/wxwpujTFVbwOYXt0Z/ib90S1GDvRamp/0WnMc4Z48Gs8YjSYUPiiJmHAfSm89HGkVWfNGVdqQYmbKGlpaE5unHt8PqPDcfY72j8jDJy+4eLdNE6Fks5+/iXwAAAP//AwDLOdnSTgcAAA==
+        H4sIAMOtr10AA5RVy27bMBC85ysE3RlJCVI0gay0QNEfaHLpjSbXFmOJVPgIor/vkpRsy2KC9GJYuzPLfQyX9eN732VvoI1QcpNX12WegWSKC7nf5M9Pv8n3/LG5qo3bGqbFYBHWXGVZTTknSprMjgNscqo1HfMieLa0o5JBU16XZV3MX8Ejug7jEk5HonakV9K2UwAhLexB5803pCRgC/4AWihOQHLEWMik6Da51Q7mDJY4Y6m2aSTTgGZOqJ3y8Cgresibm7K6J1VJbm6fyurh9ubhrvpbFydC4LuB/x//RIjnO61BWjJnzEbWwWVLsItJXIiATTJkoAYLdOv6uDBMOWlTc9pR0TkNJAASZy78kSG0OeUQGnqqeq64IiXOcA0NEQRvDof9/dDXBf71lh40aymWRlk4iKB9oGNdpByeIAHVSuB9EBrmsrZKdUBl3vjS62IBmUjvMRtC+1BOFdW5si/AZxr6gLZGrAJ82qYVMvJdv8UCUPuLeZvVeAcqOLGtVm7fpgWOrey9cHqwLSZp1QFkw15f5OtrXSSdgYV31vebw466ziJyMgSnFnifp07ED2/GW2adaX4yK95wBtOn91gtaIfy1NRvj0ulVXd1sUQkSMRJYRvudZFynAhxGGlZnCPi7YC405T2n77xtF+10FfcKpmyO92tGl4sgx7P8JVfYq2m0lDmfakLGltIWmEw2LgATAlMCJR7VF4w+vWDjn744ko64o8RPhxlrNqAbl6oUfJH+MVbqiWYa6bwVgfnMc7Zo0GMchqlQgeBEROOmfTh8xFHkRRfcMUdyUYijMKlxaF5/vNrXp3n5mOsT1TuJ3nZ3aNlmgg+i8XyXfwHAAD//wMAriMunk4HAAA=
     http_version: 
-  recorded_at: Wed, 23 Oct 2019 00:40:57 GMT
+  recorded_at: Wed, 23 Oct 2019 01:32:51 GMT
 recorded_with: VCR 5.0.0
