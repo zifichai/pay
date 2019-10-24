@@ -100,9 +100,7 @@ module Pay
 
       def braintree_trial_end_date(subscription)
         return unless subscription.trial_period
-        # Braintree is returning the configured timezone for your account
-        # This is a problem if the date is in CDT but your app is in UTC and the returned days are shorter
-        # TODO: Ideally, we should record your Braintree account's timezone as a config option and use that to parse the date
+        # Braintree returns dates without time zones, so we'll assume they're UTC
         Time.parse(subscription.first_billing_date).end_of_day
       end
 
