@@ -79,12 +79,14 @@ class Pay::Braintree::Billable::Test < ActiveSupport::TestCase
   end
 
   test 'braintree trial period options' do
-    @billable.card_token = 'fake-valid-visa-nonce'
-    subscription = @billable.subscribe(trial_period_days: 15)
-    # Braintree subscriptions don't use trialing status for simplicity
-    assert_equal "active", subscription.status
-    assert_not_nil subscription.trial_ends_at
-    # Time.zone may not match the timezone in your Braintree account, so we'll be lenient on this assertion
-    assert subscription.trial_ends_at > 14.days.from_now
+    travel_to(VCR.current_cassette.originally_recorded_at) do
+      @billable.card_token = 'fake-valid-visa-nonce'
+      subscription = @billable.subscribe(trial_period_days: 15)
+      # Braintree subscriptions don't use trialing status for simplicity
+      assert_equal "active", subscription.status
+      assert_not_nil subscription.trial_ends_at
+      # Time.zone may not match the timezone in your Braintree account, so we'll be lenient on this assertion
+      assert subscription.trial_ends_at > 14.days.from_now
+    end
   end
 end

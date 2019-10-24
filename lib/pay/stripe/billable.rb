@@ -142,6 +142,7 @@ module Pay
       end
 
       def stripe_trial_end_date(stripe_sub)
+        # Times in Stripe are returned in UTC
         stripe_sub.trial_end.present? ? Time.at(stripe_sub.trial_end) : nil
       end
 
