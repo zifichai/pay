@@ -13,6 +13,7 @@ module Pay
     validates :processor_id, presence: true
     validates :processor_plan, presence: true
     validates :quantity, presence: true
+    validates :status, presence: true
 
     # Scopes
     scope :for_name, ->(name) { where(name: name) }

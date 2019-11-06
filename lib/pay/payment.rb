@@ -1,15 +1,16 @@
 module Pay
   class Payment
-    attr_reader :payment_intent
+    attr_reader :intent
 
     delegate :id, :amount, :client_secret, :status, :confirm, to: :payment_intent
 
     def self.from_id(id)
-      new(::Stripe::PaymentIntent.retrieve(id))
+      intent = id.start_with?("seti_") ? ::Stripe::SetupIntent.retrieve(id) : ::Stripe::PaymentIntent.retrieve(id)
+      new(intent)
     end
 
-    def initialize(payment_intent)
-      @payment_intent = payment_intent
+    def initialize(intent)
+      @intent = intent
     end
 
     def requires_payment_method?
@@ -30,6 +31,14 @@ module Pay
 
     def succeeded?
       status == "succeeded"
+    end
+
+    def payment_intent?
+      intent.is_a?(::Stripe::PaymentIntent)
+    end
+
+    def setup_intent?
+      intent.is_a?(::Stripe::SetupIntent)
     end
 
     def validate

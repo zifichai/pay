@@ -15,7 +15,10 @@ module Pay
       end
 
       def create_setup_intent
-        ::Stripe::SetupIntent.create
+        ::Stripe::SetupIntent.create(
+          customer: processor_id,
+          usage: :off_session,
+        )
       end
 
       # Handles Billable#charge
@@ -47,7 +50,7 @@ module Pay
       # Returns Pay::Subscription
       def create_stripe_subscription(name, plan, options={})
         opts = {
-          expand: ['latest_invoice.payment_intent'],
+          expand: ['pending_setup_intent', 'latest_invoice.payment_intent'],
           items: [ plan: plan ],
           off_session: true,
         }.merge(options)
@@ -58,9 +61,15 @@ module Pay
         stripe_sub   = customer.subscriptions.create(opts)
         subscription = create_subscription(stripe_sub, 'stripe', name, plan, status: stripe_sub.status)
 
+        # No trial, card requires SCA
         if subscription.incomplete?
-          Pay::Payment.new(stripe_sub.latest_invoice.payment_intent).validate
+          Pay::Payment.new(stripe_sub.latest_invoice.payment_intent, stripe_sub).validate
+
+        # Trial, card requires SCA
+        elsif subscription.trialing? && stripe_sub.pending_setup_intent
+          Pay::Payment.new(stripe_sub.pending_setup_intent).validate
         end
+
         subscription
       rescue ::Stripe::StripeError => e
         raise Error, e.message
