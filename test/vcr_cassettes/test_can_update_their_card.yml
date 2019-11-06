@@ -8,25 +8,21 @@ http_interactions:
       string: email=johnny%40appleseed.com
     headers:
       User-Agent:
-      - Stripe/v1 RubyBindings/4.24.0
+      - Stripe/v1 RubyBindings/5.7.1
       Authorization:
       - Bearer sk_test_ex0JDdQGDv6z2QmAIVQUOyE6
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_n13M1F0t3ezpbR","request_duration_ms":1760}}'
+      - '{"last_request_metrics":{"request_id":"req_wC7Pjb34JFrnjP","request_duration_ms":310}}'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"4.24.0","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019;
-        root:xnu-4903.271.2~2/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
+      - '{"bindings_version":"5.7.1","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Sat Oct 12 00:02:19 PDT 2019;
+        root:xnu-4903.278.12~1/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - '30'
   response:
     status:
       code: 200
@@ -35,7 +31,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 21 Oct 2019 21:30:59 GMT
+      - Wed, 06 Nov 2019 03:47:51 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -55,7 +51,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_MRQ1VltZmNS6AA
+      - req_4IWRofrH7UlPV4
       Stripe-Version:
       - '2019-08-14'
       Strict-Transport-Security:
@@ -64,19 +60,19 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "cus_G2CsiqSjfICVlr",
+          "id": "cus_G7vLjYMoQmPGaW",
           "object": "customer",
           "account_balance": 0,
           "address": null,
           "balance": 0,
-          "created": 1571693458,
+          "created": 1573012071,
           "currency": null,
           "default_source": null,
           "delinquent": false,
           "description": null,
           "discount": null,
           "email": "johnny@appleseed.com",
-          "invoice_prefix": "6E564708",
+          "invoice_prefix": "11A7B906",
           "invoice_settings": {
             "custom_fields": null,
             "default_payment_method": null,
@@ -98,7 +94,7 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsiqSjfICVlr/sources"
+            "url": "/v1/customers/cus_G7vLjYMoQmPGaW/sources"
           },
           "subscriptions": {
             "object": "list",
@@ -107,7 +103,7 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsiqSjfICVlr/subscriptions"
+            "url": "/v1/customers/cus_G7vLjYMoQmPGaW/subscriptions"
           },
           "tax_exempt": "none",
           "tax_ids": {
@@ -117,13 +113,13 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsiqSjfICVlr/tax_ids"
+            "url": "/v1/customers/cus_G7vLjYMoQmPGaW/tax_ids"
           },
           "tax_info": null,
           "tax_info_verification": null
         }
     http_version: 
-  recorded_at: Mon, 21 Oct 2019 21:30:59 GMT
+  recorded_at: Wed, 06 Nov 2019 03:47:51 GMT
 - request:
     method: get
     uri: https://api.stripe.com/v1/plans/small-monthly
@@ -132,25 +128,21 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Stripe/v1 RubyBindings/4.24.0
+      - Stripe/v1 RubyBindings/5.7.1
       Authorization:
       - Bearer sk_test_ex0JDdQGDv6z2QmAIVQUOyE6
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_MRQ1VltZmNS6AA","request_duration_ms":339}}'
+      - '{"last_request_metrics":{"request_id":"req_4IWRofrH7UlPV4","request_duration_ms":378}}'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"4.24.0","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019;
-        root:xnu-4903.271.2~2/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
+      - '{"bindings_version":"5.7.1","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Sat Oct 12 00:02:19 PDT 2019;
+        root:xnu-4903.278.12~1/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - '30'
   response:
     status:
       code: 200
@@ -159,7 +151,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 21 Oct 2019 21:30:59 GMT
+      - Wed, 06 Nov 2019 03:47:52 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -179,7 +171,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_k9B6kKyNufDoAR
+      - req_bfnPuC1J99IFSp
       Stripe-Version:
       - '2019-08-14'
       Strict-Transport-Security:
@@ -211,7 +203,7 @@ http_interactions:
           "usage_type": "licensed"
         }
     http_version: 
-  recorded_at: Mon, 21 Oct 2019 21:30:59 GMT
+  recorded_at: Wed, 06 Nov 2019 03:47:52 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/payment_methods
@@ -220,25 +212,21 @@ http_interactions:
       string: type=card&billing_details[name]=Jane+Doe&card[number]=4242+4242+4242+4242&card[exp_month]=9&card[exp_year]=2024&card[cvc]=123
     headers:
       User-Agent:
-      - Stripe/v1 RubyBindings/4.24.0
+      - Stripe/v1 RubyBindings/5.7.1
       Authorization:
       - Bearer sk_test_ex0JDdQGDv6z2QmAIVQUOyE6
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_k9B6kKyNufDoAR","request_duration_ms":461}}'
+      - '{"last_request_metrics":{"request_id":"req_bfnPuC1J99IFSp","request_duration_ms":288}}'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"4.24.0","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019;
-        root:xnu-4903.271.2~2/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
+      - '{"bindings_version":"5.7.1","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Sat Oct 12 00:02:19 PDT 2019;
+        root:xnu-4903.278.12~1/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - '30'
   response:
     status:
       code: 200
@@ -247,7 +235,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 21 Oct 2019 21:31:00 GMT
+      - Wed, 06 Nov 2019 03:47:52 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -267,7 +255,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_6JV91YOsd8amIo
+      - req_ugKDSMjgL4nvBl
       Stripe-Version:
       - '2019-08-14'
       Strict-Transport-Security:
@@ -276,7 +264,7 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "pm_1FW8StKXBGcbgpbZ1KqRrvPC",
+          "id": "pm_1FbfUqKXBGcbgpbZPyfZFEIn",
           "object": "payment_method",
           "billing_details": {
             "address": {
@@ -310,7 +298,7 @@ http_interactions:
             },
             "wallet": null
           },
-          "created": 1571693460,
+          "created": 1573012072,
           "customer": null,
           "livemode": false,
           "metadata": {
@@ -318,7 +306,7 @@ http_interactions:
           "type": "card"
         }
     http_version: 
-  recorded_at: Mon, 21 Oct 2019 21:31:00 GMT
+  recorded_at: Wed, 06 Nov 2019 03:47:52 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/customers
@@ -327,25 +315,21 @@ http_interactions:
       string: email=johnny%40appleseed.com&description=
     headers:
       User-Agent:
-      - Stripe/v1 RubyBindings/4.24.0
+      - Stripe/v1 RubyBindings/5.7.1
       Authorization:
       - Bearer sk_test_ex0JDdQGDv6z2QmAIVQUOyE6
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_6JV91YOsd8amIo","request_duration_ms":700}}'
+      - '{"last_request_metrics":{"request_id":"req_ugKDSMjgL4nvBl","request_duration_ms":639}}'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"4.24.0","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019;
-        root:xnu-4903.271.2~2/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
+      - '{"bindings_version":"5.7.1","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Sat Oct 12 00:02:19 PDT 2019;
+        root:xnu-4903.278.12~1/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - '30'
   response:
     status:
       code: 200
@@ -354,7 +338,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 21 Oct 2019 21:31:00 GMT
+      - Wed, 06 Nov 2019 03:47:53 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -374,7 +358,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_nuFHh0ATAtdvZl
+      - req_1qa43ztgFPFiYH
       Stripe-Version:
       - '2019-08-14'
       Strict-Transport-Security:
@@ -383,19 +367,19 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "cus_G2CsKIiblQC4vr",
+          "id": "cus_G7vLI7JNHzQUcU",
           "object": "customer",
           "account_balance": 0,
           "address": null,
           "balance": 0,
-          "created": 1571693460,
+          "created": 1573012073,
           "currency": null,
           "default_source": null,
           "delinquent": false,
           "description": null,
           "discount": null,
           "email": "johnny@appleseed.com",
-          "invoice_prefix": "62BAABCC",
+          "invoice_prefix": "C107C701",
           "invoice_settings": {
             "custom_fields": null,
             "default_payment_method": null,
@@ -417,7 +401,7 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsKIiblQC4vr/sources"
+            "url": "/v1/customers/cus_G7vLI7JNHzQUcU/sources"
           },
           "subscriptions": {
             "object": "list",
@@ -426,7 +410,7 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsKIiblQC4vr/subscriptions"
+            "url": "/v1/customers/cus_G7vLI7JNHzQUcU/subscriptions"
           },
           "tax_exempt": "none",
           "tax_ids": {
@@ -436,40 +420,36 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsKIiblQC4vr/tax_ids"
+            "url": "/v1/customers/cus_G7vLI7JNHzQUcU/tax_ids"
           },
           "tax_info": null,
           "tax_info_verification": null
         }
     http_version: 
-  recorded_at: Mon, 21 Oct 2019 21:31:00 GMT
+  recorded_at: Wed, 06 Nov 2019 03:47:53 GMT
 - request:
     method: get
-    uri: https://api.stripe.com/v1/customers/cus_G2CsKIiblQC4vr
+    uri: https://api.stripe.com/v1/customers/cus_G7vLI7JNHzQUcU
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Stripe/v1 RubyBindings/4.24.0
+      - Stripe/v1 RubyBindings/5.7.1
       Authorization:
       - Bearer sk_test_ex0JDdQGDv6z2QmAIVQUOyE6
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_nuFHh0ATAtdvZl","request_duration_ms":363}}'
+      - '{"last_request_metrics":{"request_id":"req_1qa43ztgFPFiYH","request_duration_ms":347}}'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"4.24.0","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019;
-        root:xnu-4903.271.2~2/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
+      - '{"bindings_version":"5.7.1","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Sat Oct 12 00:02:19 PDT 2019;
+        root:xnu-4903.278.12~1/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - '30'
   response:
     status:
       code: 200
@@ -478,7 +458,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 21 Oct 2019 21:31:00 GMT
+      - Wed, 06 Nov 2019 03:47:53 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -498,7 +478,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_ouRcr5jPs2XbYC
+      - req_ly9GxrGhfbwrAE
       Stripe-Version:
       - '2019-08-14'
       Strict-Transport-Security:
@@ -507,19 +487,19 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "cus_G2CsKIiblQC4vr",
+          "id": "cus_G7vLI7JNHzQUcU",
           "object": "customer",
           "account_balance": 0,
           "address": null,
           "balance": 0,
-          "created": 1571693460,
+          "created": 1573012073,
           "currency": null,
           "default_source": null,
           "delinquent": false,
           "description": null,
           "discount": null,
           "email": "johnny@appleseed.com",
-          "invoice_prefix": "62BAABCC",
+          "invoice_prefix": "C107C701",
           "invoice_settings": {
             "custom_fields": null,
             "default_payment_method": null,
@@ -541,7 +521,7 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsKIiblQC4vr/sources"
+            "url": "/v1/customers/cus_G7vLI7JNHzQUcU/sources"
           },
           "subscriptions": {
             "object": "list",
@@ -550,7 +530,7 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsKIiblQC4vr/subscriptions"
+            "url": "/v1/customers/cus_G7vLI7JNHzQUcU/subscriptions"
           },
           "tax_exempt": "none",
           "tax_ids": {
@@ -560,40 +540,36 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsKIiblQC4vr/tax_ids"
+            "url": "/v1/customers/cus_G7vLI7JNHzQUcU/tax_ids"
           },
           "tax_info": null,
           "tax_info_verification": null
         }
     http_version: 
-  recorded_at: Mon, 21 Oct 2019 21:31:00 GMT
+  recorded_at: Wed, 06 Nov 2019 03:47:53 GMT
 - request:
     method: post
-    uri: https://api.stripe.com/v1/payment_methods/pm_1FW8StKXBGcbgpbZ1KqRrvPC/attach
+    uri: https://api.stripe.com/v1/payment_methods/pm_1FbfUqKXBGcbgpbZPyfZFEIn/attach
     body:
       encoding: UTF-8
-      string: customer=cus_G2CsKIiblQC4vr
+      string: customer=cus_G7vLI7JNHzQUcU
     headers:
       User-Agent:
-      - Stripe/v1 RubyBindings/4.24.0
+      - Stripe/v1 RubyBindings/5.7.1
       Authorization:
       - Bearer sk_test_ex0JDdQGDv6z2QmAIVQUOyE6
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_ouRcr5jPs2XbYC","request_duration_ms":305}}'
+      - '{"last_request_metrics":{"request_id":"req_ly9GxrGhfbwrAE","request_duration_ms":318}}'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"4.24.0","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019;
-        root:xnu-4903.271.2~2/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
+      - '{"bindings_version":"5.7.1","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Sat Oct 12 00:02:19 PDT 2019;
+        root:xnu-4903.278.12~1/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - '30'
   response:
     status:
       code: 200
@@ -602,7 +578,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 21 Oct 2019 21:31:01 GMT
+      - Wed, 06 Nov 2019 03:47:54 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -622,7 +598,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_Jb3TcLeQS5qu5r
+      - req_jcLhjjmo5t3wkr
       Stripe-Version:
       - '2019-08-14'
       Strict-Transport-Security:
@@ -631,7 +607,7 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "pm_1FW8StKXBGcbgpbZ1KqRrvPC",
+          "id": "pm_1FbfUqKXBGcbgpbZPyfZFEIn",
           "object": "payment_method",
           "billing_details": {
             "address": {
@@ -665,42 +641,38 @@ http_interactions:
             },
             "wallet": null
           },
-          "created": 1571693460,
-          "customer": "cus_G2CsKIiblQC4vr",
+          "created": 1573012072,
+          "customer": "cus_G7vLI7JNHzQUcU",
           "livemode": false,
           "metadata": {
           },
           "type": "card"
         }
     http_version: 
-  recorded_at: Mon, 21 Oct 2019 21:31:01 GMT
+  recorded_at: Wed, 06 Nov 2019 03:47:54 GMT
 - request:
     method: post
-    uri: https://api.stripe.com/v1/customers/cus_G2CsKIiblQC4vr
+    uri: https://api.stripe.com/v1/customers/cus_G7vLI7JNHzQUcU
     body:
       encoding: UTF-8
-      string: invoice_settings[default_payment_method]=pm_1FW8StKXBGcbgpbZ1KqRrvPC
+      string: invoice_settings[default_payment_method]=pm_1FbfUqKXBGcbgpbZPyfZFEIn
     headers:
       User-Agent:
-      - Stripe/v1 RubyBindings/4.24.0
+      - Stripe/v1 RubyBindings/5.7.1
       Authorization:
       - Bearer sk_test_ex0JDdQGDv6z2QmAIVQUOyE6
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_Jb3TcLeQS5qu5r","request_duration_ms":564}}'
+      - '{"last_request_metrics":{"request_id":"req_jcLhjjmo5t3wkr","request_duration_ms":579}}'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"4.24.0","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019;
-        root:xnu-4903.271.2~2/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
+      - '{"bindings_version":"5.7.1","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Sat Oct 12 00:02:19 PDT 2019;
+        root:xnu-4903.278.12~1/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - '30'
   response:
     status:
       code: 200
@@ -709,7 +681,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 21 Oct 2019 21:31:02 GMT
+      - Wed, 06 Nov 2019 03:47:54 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -729,7 +701,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_28oGwkeqKJozJG
+      - req_RUvK4F4b5TFs7Q
       Stripe-Version:
       - '2019-08-14'
       Strict-Transport-Security:
@@ -738,22 +710,22 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "cus_G2CsKIiblQC4vr",
+          "id": "cus_G7vLI7JNHzQUcU",
           "object": "customer",
           "account_balance": 0,
           "address": null,
           "balance": 0,
-          "created": 1571693460,
+          "created": 1573012073,
           "currency": null,
           "default_source": null,
           "delinquent": false,
           "description": null,
           "discount": null,
           "email": "johnny@appleseed.com",
-          "invoice_prefix": "62BAABCC",
+          "invoice_prefix": "C107C701",
           "invoice_settings": {
             "custom_fields": null,
-            "default_payment_method": "pm_1FW8StKXBGcbgpbZ1KqRrvPC",
+            "default_payment_method": "pm_1FbfUqKXBGcbgpbZPyfZFEIn",
             "footer": null
           },
           "livemode": false,
@@ -772,7 +744,7 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsKIiblQC4vr/sources"
+            "url": "/v1/customers/cus_G7vLI7JNHzQUcU/sources"
           },
           "subscriptions": {
             "object": "list",
@@ -781,7 +753,7 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsKIiblQC4vr/subscriptions"
+            "url": "/v1/customers/cus_G7vLI7JNHzQUcU/subscriptions"
           },
           "tax_exempt": "none",
           "tax_ids": {
@@ -791,13 +763,13 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsKIiblQC4vr/tax_ids"
+            "url": "/v1/customers/cus_G7vLI7JNHzQUcU/tax_ids"
           },
           "tax_info": null,
           "tax_info_verification": null
         }
     http_version: 
-  recorded_at: Mon, 21 Oct 2019 21:31:02 GMT
+  recorded_at: Wed, 06 Nov 2019 03:47:54 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/payment_methods
@@ -806,25 +778,21 @@ http_interactions:
       string: type=card&billing_details[name]=Jane+Doe&card[number]=6011+1111+1111+1117&card[exp_month]=9&card[exp_year]=2024&card[cvc]=123
     headers:
       User-Agent:
-      - Stripe/v1 RubyBindings/4.24.0
+      - Stripe/v1 RubyBindings/5.7.1
       Authorization:
       - Bearer sk_test_ex0JDdQGDv6z2QmAIVQUOyE6
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_28oGwkeqKJozJG","request_duration_ms":546}}'
+      - '{"last_request_metrics":{"request_id":"req_RUvK4F4b5TFs7Q","request_duration_ms":370}}'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"4.24.0","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019;
-        root:xnu-4903.271.2~2/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
+      - '{"bindings_version":"5.7.1","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Sat Oct 12 00:02:19 PDT 2019;
+        root:xnu-4903.278.12~1/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - '30'
   response:
     status:
       code: 200
@@ -833,7 +801,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 21 Oct 2019 21:31:02 GMT
+      - Wed, 06 Nov 2019 03:47:55 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -853,7 +821,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_5OnfdfMcXtzzEM
+      - req_ckMp0VygwPHOAA
       Stripe-Version:
       - '2019-08-14'
       Strict-Transport-Security:
@@ -862,7 +830,7 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "pm_1FW8SwKXBGcbgpbZnMuhKitb",
+          "id": "pm_1FbfUsKXBGcbgpbZkyFDHXQ5",
           "object": "payment_method",
           "billing_details": {
             "address": {
@@ -896,7 +864,7 @@ http_interactions:
             },
             "wallet": null
           },
-          "created": 1571693462,
+          "created": 1573012075,
           "customer": null,
           "livemode": false,
           "metadata": {
@@ -904,34 +872,30 @@ http_interactions:
           "type": "card"
         }
     http_version: 
-  recorded_at: Mon, 21 Oct 2019 21:31:02 GMT
+  recorded_at: Wed, 06 Nov 2019 03:47:55 GMT
 - request:
     method: get
-    uri: https://api.stripe.com/v1/customers/cus_G2CsKIiblQC4vr
+    uri: https://api.stripe.com/v1/customers/cus_G7vLI7JNHzQUcU
     body:
       encoding: US-ASCII
       string: ''
     headers:
       User-Agent:
-      - Stripe/v1 RubyBindings/4.24.0
+      - Stripe/v1 RubyBindings/5.7.1
       Authorization:
       - Bearer sk_test_ex0JDdQGDv6z2QmAIVQUOyE6
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_5OnfdfMcXtzzEM","request_duration_ms":693}}'
+      - '{"last_request_metrics":{"request_id":"req_ckMp0VygwPHOAA","request_duration_ms":659}}'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"4.24.0","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019;
-        root:xnu-4903.271.2~2/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
+      - '{"bindings_version":"5.7.1","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Sat Oct 12 00:02:19 PDT 2019;
+        root:xnu-4903.278.12~1/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - '30'
   response:
     status:
       code: 200
@@ -940,7 +904,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 21 Oct 2019 21:31:03 GMT
+      - Wed, 06 Nov 2019 03:47:55 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -960,7 +924,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_9KqNrhYMXVZuiA
+      - req_zWSe4mkhOCHc82
       Stripe-Version:
       - '2019-08-14'
       Strict-Transport-Security:
@@ -969,22 +933,22 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "cus_G2CsKIiblQC4vr",
+          "id": "cus_G7vLI7JNHzQUcU",
           "object": "customer",
           "account_balance": 0,
           "address": null,
           "balance": 0,
-          "created": 1571693460,
+          "created": 1573012073,
           "currency": null,
           "default_source": null,
           "delinquent": false,
           "description": null,
           "discount": null,
           "email": "johnny@appleseed.com",
-          "invoice_prefix": "62BAABCC",
+          "invoice_prefix": "C107C701",
           "invoice_settings": {
             "custom_fields": null,
-            "default_payment_method": "pm_1FW8StKXBGcbgpbZ1KqRrvPC",
+            "default_payment_method": "pm_1FbfUqKXBGcbgpbZPyfZFEIn",
             "footer": null
           },
           "livemode": false,
@@ -1003,7 +967,7 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsKIiblQC4vr/sources"
+            "url": "/v1/customers/cus_G7vLI7JNHzQUcU/sources"
           },
           "subscriptions": {
             "object": "list",
@@ -1012,7 +976,7 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsKIiblQC4vr/subscriptions"
+            "url": "/v1/customers/cus_G7vLI7JNHzQUcU/subscriptions"
           },
           "tax_exempt": "none",
           "tax_ids": {
@@ -1022,40 +986,36 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsKIiblQC4vr/tax_ids"
+            "url": "/v1/customers/cus_G7vLI7JNHzQUcU/tax_ids"
           },
           "tax_info": null,
           "tax_info_verification": null
         }
     http_version: 
-  recorded_at: Mon, 21 Oct 2019 21:31:03 GMT
+  recorded_at: Wed, 06 Nov 2019 03:47:55 GMT
 - request:
     method: post
-    uri: https://api.stripe.com/v1/payment_methods/pm_1FW8SwKXBGcbgpbZnMuhKitb/attach
+    uri: https://api.stripe.com/v1/payment_methods/pm_1FbfUsKXBGcbgpbZkyFDHXQ5/attach
     body:
       encoding: UTF-8
-      string: customer=cus_G2CsKIiblQC4vr
+      string: customer=cus_G7vLI7JNHzQUcU
     headers:
       User-Agent:
-      - Stripe/v1 RubyBindings/4.24.0
+      - Stripe/v1 RubyBindings/5.7.1
       Authorization:
       - Bearer sk_test_ex0JDdQGDv6z2QmAIVQUOyE6
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_9KqNrhYMXVZuiA","request_duration_ms":393}}'
+      - '{"last_request_metrics":{"request_id":"req_zWSe4mkhOCHc82","request_duration_ms":286}}'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"4.24.0","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019;
-        root:xnu-4903.271.2~2/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
+      - '{"bindings_version":"5.7.1","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Sat Oct 12 00:02:19 PDT 2019;
+        root:xnu-4903.278.12~1/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - '30'
   response:
     status:
       code: 200
@@ -1064,7 +1024,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 21 Oct 2019 21:31:03 GMT
+      - Wed, 06 Nov 2019 03:47:56 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -1084,7 +1044,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_qNaypKiLRz7gcP
+      - req_Vr582V5DubFiKR
       Stripe-Version:
       - '2019-08-14'
       Strict-Transport-Security:
@@ -1093,7 +1053,7 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "pm_1FW8SwKXBGcbgpbZnMuhKitb",
+          "id": "pm_1FbfUsKXBGcbgpbZkyFDHXQ5",
           "object": "payment_method",
           "billing_details": {
             "address": {
@@ -1127,42 +1087,38 @@ http_interactions:
             },
             "wallet": null
           },
-          "created": 1571693462,
-          "customer": "cus_G2CsKIiblQC4vr",
+          "created": 1573012075,
+          "customer": "cus_G7vLI7JNHzQUcU",
           "livemode": false,
           "metadata": {
           },
           "type": "card"
         }
     http_version: 
-  recorded_at: Mon, 21 Oct 2019 21:31:04 GMT
+  recorded_at: Wed, 06 Nov 2019 03:47:56 GMT
 - request:
     method: post
-    uri: https://api.stripe.com/v1/customers/cus_G2CsKIiblQC4vr
+    uri: https://api.stripe.com/v1/customers/cus_G7vLI7JNHzQUcU
     body:
       encoding: UTF-8
-      string: invoice_settings[default_payment_method]=pm_1FW8SwKXBGcbgpbZnMuhKitb
+      string: invoice_settings[default_payment_method]=pm_1FbfUsKXBGcbgpbZkyFDHXQ5
     headers:
       User-Agent:
-      - Stripe/v1 RubyBindings/4.24.0
+      - Stripe/v1 RubyBindings/5.7.1
       Authorization:
       - Bearer sk_test_ex0JDdQGDv6z2QmAIVQUOyE6
       Content-Type:
       - application/x-www-form-urlencoded
       X-Stripe-Client-Telemetry:
-      - '{"last_request_metrics":{"request_id":"req_qNaypKiLRz7gcP","request_duration_ms":907}}'
+      - '{"last_request_metrics":{"request_id":"req_Vr582V5DubFiKR","request_duration_ms":780}}'
       X-Stripe-Client-User-Agent:
-      - '{"bindings_version":"4.24.0","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
-        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Tue Aug 20 16:57:14 PDT 2019;
-        root:xnu-4903.271.2~2/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
+      - '{"bindings_version":"5.7.1","lang":"ruby","lang_version":"2.6.5 p114 (2019-10-01)","platform":"x86_64-darwin18","engine":"ruby","publisher":"stripe","uname":"Darwin
+        Chriss-MBP 18.7.0 Darwin Kernel Version 18.7.0: Sat Oct 12 00:02:19 PDT 2019;
+        root:xnu-4903.278.12~1/RELEASE_X86_64 x86_64","hostname":"Chriss-MBP"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      Connection:
-      - keep-alive
-      Keep-Alive:
-      - '30'
   response:
     status:
       code: 200
@@ -1171,7 +1127,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Mon, 21 Oct 2019 21:31:04 GMT
+      - Wed, 06 Nov 2019 03:47:56 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -1191,7 +1147,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_qOXsOqXxFXRauh
+      - req_PA0UdyLoMOypB1
       Stripe-Version:
       - '2019-08-14'
       Strict-Transport-Security:
@@ -1200,22 +1156,22 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "cus_G2CsKIiblQC4vr",
+          "id": "cus_G7vLI7JNHzQUcU",
           "object": "customer",
           "account_balance": 0,
           "address": null,
           "balance": 0,
-          "created": 1571693460,
+          "created": 1573012073,
           "currency": null,
           "default_source": null,
           "delinquent": false,
           "description": null,
           "discount": null,
           "email": "johnny@appleseed.com",
-          "invoice_prefix": "62BAABCC",
+          "invoice_prefix": "C107C701",
           "invoice_settings": {
             "custom_fields": null,
-            "default_payment_method": "pm_1FW8SwKXBGcbgpbZnMuhKitb",
+            "default_payment_method": "pm_1FbfUsKXBGcbgpbZkyFDHXQ5",
             "footer": null
           },
           "livemode": false,
@@ -1234,7 +1190,7 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsKIiblQC4vr/sources"
+            "url": "/v1/customers/cus_G7vLI7JNHzQUcU/sources"
           },
           "subscriptions": {
             "object": "list",
@@ -1243,7 +1199,7 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsKIiblQC4vr/subscriptions"
+            "url": "/v1/customers/cus_G7vLI7JNHzQUcU/subscriptions"
           },
           "tax_exempt": "none",
           "tax_ids": {
@@ -1253,11 +1209,11 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/customers/cus_G2CsKIiblQC4vr/tax_ids"
+            "url": "/v1/customers/cus_G7vLI7JNHzQUcU/tax_ids"
           },
           "tax_info": null,
           "tax_info_verification": null
         }
     http_version: 
-  recorded_at: Mon, 21 Oct 2019 21:31:04 GMT
+  recorded_at: Wed, 06 Nov 2019 03:47:56 GMT
 recorded_with: VCR 5.0.0

@@ -118,6 +118,7 @@ class Pay::Billable::Test < ActiveSupport::TestCase
       processor: 'stripe',
       processor_id: '1',
       processor_plan: 'default',
+      status: 'active',
       quantity: '1'
     )
 

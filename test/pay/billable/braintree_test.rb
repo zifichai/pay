@@ -79,7 +79,7 @@ class Pay::Braintree::Billable::Test < ActiveSupport::TestCase
   end
 
   test 'braintree trial period options' do
-    travel_to(VCR.current_cassette.originally_recorded_at) do
+    travel_to(VCR.current_cassette.originally_recorded_at || Time.current) do
       @billable.card_token = 'fake-valid-visa-nonce'
       subscription = @billable.subscribe(trial_period_days: 15)
       # Braintree subscriptions don't use trialing status for simplicity

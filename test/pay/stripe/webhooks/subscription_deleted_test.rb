@@ -16,7 +16,8 @@ class Pay::Stripe::Webhooks::SubscriptionDeletedTest < ActiveSupport::TestCase
       processor: :stripe,
       processor_id: @event.data.object.id,
       name: 'default',
-      processor_plan: 'some-plan'
+      processor_plan: 'some-plan',
+      status: 'active',
     )
 
     Pay.subscription_model.any_instance.expects(:update!).with(ends_at: Time.at(@event.data.object.ended_at))
@@ -34,7 +35,8 @@ class Pay::Stripe::Webhooks::SubscriptionDeletedTest < ActiveSupport::TestCase
       processor_id: @event.data.object.id,
       name: 'default',
       processor_plan: 'some-plan',
-      ends_at: Time.now
+      ends_at: Time.now,
+      status: 'active',
     )
 
     Pay.subscription_model.any_instance.expects(:update!).with(ends_at: Time.at(@event.data.object.ended_at)).never
@@ -51,7 +53,8 @@ class Pay::Stripe::Webhooks::SubscriptionDeletedTest < ActiveSupport::TestCase
       processor: :stripe,
       processor_id: 'does-not-exist',
       name: 'default',
-      processor_plan: 'some-plan'
+      processor_plan: 'some-plan',
+      status: 'active',
     )
 
     Pay.subscription_model.any_instance.expects(:update!).with(ends_at: Time.at(@event.data.object.ended_at)).never

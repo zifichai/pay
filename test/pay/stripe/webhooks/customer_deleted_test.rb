@@ -22,7 +22,8 @@ class Pay::Stripe::Webhooks::CustomerDeletedTest < ActiveSupport::TestCase
       processor_id: 'sub_someid',
       name: 'default',
       processor_plan: 'some-plan',
-      trial_ends_at: 3.days.from_now
+      trial_ends_at: 3.days.from_now,
+      status: 'active',
     )
 
     Pay::Stripe::Webhooks::CustomerDeleted.new.call(@event)

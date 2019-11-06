@@ -8,7 +8,7 @@ class Pay::Stripe::Webhooks::SubscriptionUpdatedTest < ActiveSupport::TestCase
 
   test "nothing happens if a subscription can't be found" do
     @user = User.create!(email: 'gob@bluth.com', processor: :stripe, processor_id: @event.data.object.customer)
-    @user.subscriptions.create!(processor: :stripe, processor_id: 'does-not-exist', name: 'default', processor_plan: 'some-plan')
+    @user.subscriptions.create!(processor: :stripe, processor_id: 'does-not-exist', name: 'default', processor_plan: 'some-plan', status: 'active')
 
     Pay.subscription_model.any_instance.expects(:save).never
     Pay::Stripe::Webhooks::SubscriptionUpdated.new.call(@event)
@@ -16,7 +16,7 @@ class Pay::Stripe::Webhooks::SubscriptionUpdatedTest < ActiveSupport::TestCase
 
   test "subscription is updated" do
     @user = User.create!(email: 'gob@bluth.com', processor: :stripe, processor_id: @event.data.object.customer)
-    subscription = @user.subscriptions.create!(processor: :stripe, processor_id: @event.data.object.id, name: 'default', processor_plan: 'some-plan')
+    subscription = @user.subscriptions.create!(processor: :stripe, processor_id: @event.data.object.id, name: 'default', processor_plan: 'some-plan', status: 'active')
 
     Pay::Stripe::Webhooks::SubscriptionUpdated.new.call(@event)
 
@@ -28,7 +28,7 @@ class Pay::Stripe::Webhooks::SubscriptionUpdatedTest < ActiveSupport::TestCase
 
   test "subscription is updated with cancel_at_period_end = true and on_trial? = false" do
     @user = User.create!(email: 'gob@bluth.com', processor: :stripe, processor_id: @event.data.object.customer)
-    subscription = @user.subscriptions.create!(processor: :stripe, processor_id: @event.data.object.id, name: 'default', processor_plan: 'some-plan')
+    subscription = @user.subscriptions.create!(processor: :stripe, processor_id: @event.data.object.id, name: 'default', processor_plan: 'some-plan', status: 'active')
 
     @event.data.object.stubs(:cancel_at_period_end).returns(true)
 
@@ -39,7 +39,7 @@ class Pay::Stripe::Webhooks::SubscriptionUpdatedTest < ActiveSupport::TestCase
 
   test "subscription is updated with cancel_at_period_end = true and on_trial? = true" do
     @user = User.create!(email: 'gob@bluth.com', processor: :stripe, processor_id: @event.data.object.customer)
-    subscription = @user.subscriptions.create!(processor: :stripe, processor_id: @event.data.object.id, name: 'default', processor_plan: 'some-plan')
+    subscription = @user.subscriptions.create!(processor: :stripe, processor_id: @event.data.object.id, name: 'default', processor_plan: 'some-plan', status: 'active')
 
     @event.data.object.stubs(:cancel_at_period_end).returns(true)
     Pay.subscription_model.any_instance.stubs(:on_trial?).returns(true)

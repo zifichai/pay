@@ -21,6 +21,7 @@ module Pay
         processor_id: "f6rnpm",
         processor_plan: "default",
         name: "default",
+        status: "active",
       )
 
       params = {

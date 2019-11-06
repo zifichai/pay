@@ -8,7 +8,7 @@ class Pay::Stripe::Webhooks::SubscriptionRenewingTest < ActiveSupport::TestCase
 
   test "an email is sent to the user when subscription is renewing" do
     @user = User.create!(email: 'gob@bluth.com', processor: :stripe, processor_id: @event.data.object.customer)
-    subscription = @user.subscriptions.create!(processor: :stripe, processor_id: @event.data.object.subscription, name: 'default', processor_plan: 'some-plan')
+    subscription = @user.subscriptions.create!(processor: :stripe, processor_id: @event.data.object.subscription, name: 'default', processor_plan: 'some-plan', status: 'active')
 
     mailer = mock('mailer')
     Pay.stubs(:send_emails).returns(true)
@@ -19,7 +19,7 @@ class Pay::Stripe::Webhooks::SubscriptionRenewingTest < ActiveSupport::TestCase
 
   test "an email is not sent when subscription can't be found" do
     @user = User.create!(email: 'gob@bluth.com', processor: :stripe, processor_id: @event.data.object.customer)
-    subscription = @user.subscriptions.create!(processor: :stripe, processor_id: 'does-not-exist', name: 'default', processor_plan: 'some-plan')
+    subscription = @user.subscriptions.create!(processor: :stripe, processor_id: 'does-not-exist', name: 'default', processor_plan: 'some-plan', status: 'active')
 
     mailer = mock('mailer')
     Pay.stubs(:send_emails).returns(true)

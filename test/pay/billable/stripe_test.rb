@@ -170,7 +170,7 @@ class Pay::Stripe::Billable::Test < ActiveSupport::TestCase
   end
 
   test 'stripe trial period options' do
-    travel_to VCR.current_cassette.originally_recorded_at do
+    travel_to(VCR.current_cassette.originally_recorded_at || Time.current) do
       @billable.card_token = payment_method.id
       subscription = @billable.subscribe(plan: 'small-monthly', trial_period_days: 15)
       assert_equal "trialing", subscription.status

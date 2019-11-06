@@ -7,7 +7,7 @@ class Pay::Subscription::BraintreeTest < ActiveSupport::TestCase
     @billable.card_token = 'fake-valid-visa-nonce'
   end
 
-  test 'cancel' do
+  test 'braintree cancel' do
     @billable.subscribe(trial_duration: 0)
     @subscription = @billable.subscription
     @subscription.cancel
@@ -15,7 +15,7 @@ class Pay::Subscription::BraintreeTest < ActiveSupport::TestCase
     assert_equal 'canceled', @subscription.status
   end
 
-  test 'cancel_now!' do
+  test 'braintree cancel_now!' do
     @billable.subscribe(trial_duration: 0)
     @subscription = @billable.subscription
     @subscription.cancel_now!
@@ -23,7 +23,7 @@ class Pay::Subscription::BraintreeTest < ActiveSupport::TestCase
     assert_equal 'canceled', @subscription.status
   end
 
-  test 'resume on grace period' do
+  test 'braintree resume on grace period' do
     @billable.subscribe(trial_duration: 14)
     @subscription = @billable.subscription
     @subscription.cancel
@@ -34,13 +34,13 @@ class Pay::Subscription::BraintreeTest < ActiveSupport::TestCase
     assert_equal 'active', @subscription.status
   end
 
-  test 'processor subscription' do
+  test 'braintree processor subscription' do
     @billable.subscribe(trial_duration: 0)
     assert_equal @billable.subscription.processor_subscription.class, Braintree::Subscription
     assert_equal 'active', @billable.subscription.status
   end
 
-  test 'can swap plans' do
+  test 'braintree can swap plans' do
     @billable.subscribe(plan: 'default', trial_duration: 0)
     @billable.subscription.swap('big')
 
@@ -48,7 +48,7 @@ class Pay::Subscription::BraintreeTest < ActiveSupport::TestCase
     assert_equal 'active', @billable.subscription.status
   end
 
-  test 'can swap plans between frequencies' do
+  test 'braintree can swap plans between frequencies' do
     @billable.subscribe(plan: 'default', trial_duration: 0)
     @billable.subscription.swap('yearly')
 
