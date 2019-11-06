@@ -83,7 +83,7 @@
       if (this.status == "requires_action") {
         this.paymentProcessing = true
         this.paymentProcessed = false
-        stripe.handleCardAction(this.clientSecret).then(this.handleConfirmResult.bind(this))
+        stripe.confirmCardPayment(this.clientSecret).then(this.handleConfirmResult.bind(this))
       }
 
       // Setup elements in case the authentication fails and user needs to put in a new card
