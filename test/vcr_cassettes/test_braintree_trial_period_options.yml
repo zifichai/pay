@@ -32,7 +32,7 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Wed, 06 Nov 2019 03:50:47 GMT
+      - Thu, 07 Nov 2019 23:04:47 GMT
       Content-Type:
       - application/xml; charset=utf-8
       Transfer-Encoding:
@@ -52,25 +52,25 @@ http_interactions:
       Content-Encoding:
       - gzip
       Etag:
-      - W/"e2ad6942147bfee9560287104f788f33"
+      - W/"fdceca4d318cd17af68aedace8155642"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Runtime:
-      - '0.597919'
+      - '0.580067'
       X-Request-Id:
-      - 01-1573012247.022-24.207.209.104-23258839
+      - 01-1573167887.231-24.207.209.104-4887241
       Content-Security-Policy:
       - frame-ancestors 'self'
       X-Broxyid:
-      - 01-1573012247.022-24.207.209.104-23258839
+      - 01-1573167887.231-24.207.209.104-4887241
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        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
+        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
     http_version: 
-  recorded_at: Wed, 06 Nov 2019 03:50:46 GMT
+  recorded_at: Thu, 07 Nov 2019 23:04:47 GMT
 - request:
     method: post
     uri: https://api.sandbox.braintreegateway.com/merchants/zyfwpztymjqdcc5g/subscriptions
@@ -82,7 +82,7 @@ http_interactions:
           <trial-period type="boolean">true</trial-period>
           <trial-duration type="integer">15</trial-duration>
           <trial-duration-unit>day</trial-duration-unit>
-          <payment-method-token>dnhcrk</payment-method-token>
+          <payment-method-token>b9xcp9</payment-method-token>
           <plan-id>default</plan-id>
         </subscription>
     headers:
@@ -104,7 +104,7 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Wed, 06 Nov 2019 03:50:48 GMT
+      - Thu, 07 Nov 2019 23:04:48 GMT
       Content-Type:
       - application/xml; charset=utf-8
       Transfer-Encoding:
@@ -124,23 +124,23 @@ http_interactions:
       Content-Encoding:
       - gzip
       Etag:
-      - W/"14b5c3fb87c0e0a0f0c3fb901b3650ad"
+      - W/"fcaec31745f5178556a2f9d3b04612fd"
       Cache-Control:
       - max-age=0, private, must-revalidate
       X-Runtime:
-      - '0.256556'
+      - '0.199803'
       X-Request-Id:
-      - 02-1573012247.907-24.207.209.104-23193016
+      - 01-1573167888.264-24.207.209.104-4887449
       Content-Security-Policy:
       - frame-ancestors 'self'
       X-Broxyid:
-      - 02-1573012247.907-24.207.209.104-23193016
+      - 01-1573167888.264-24.207.209.104-4887449
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        H4sIABhDwl0AA5RVy27bMBC85ysM3WnJad0mgay0QNEfaHLpjSY3ERuJFJZkEP19l6T8kMUE7cWwdmeW+xgu6/u3vlu9Alpl9K7YrKtiBVoYqfTzrnh8+MluivvmqrZ+bwWqwRGsuVqtai4lM9qu3DjAruCIfCzK6NnzjmsBTbWuqro8fEWP6jqKyyQfmXlivdGunQIo7eAZsGiuAyeDmwUYAJWRDLQkjIOVVt2ucOjhkMIcZx1Hl0cKBDJLxt2USEA51UPIZHPLNhtWfXmoPt1tq7vPN7/r8kSIfD/I/+OfCOl8jwjasUPGYhQdXPaEWpLFxQjUJMsGbqlAv6xPKiuM1y43qCeuOo/AIiBz5syfGArtKYfY0FPVp4rDDJfQGEHJ5nqrv+73dUl/g6UHFC2n0riIBzGyD3ysy5wjEDSQXBm8DQrhUNbemA64LppQel3OIBPpLWXDeB/L2SR5Luwz8JmG3qEtEYsAH7ZpgUx83++pANL+bN52Md6BK8lci8Y/t3mBUyv7IJweXEtJOvMCupG6FfhSl1lnZNGlDf2W8MR95wg5GaITFV3oqRPpI5jpljlvm+/CqVeawfQZPA4V70ieyMP6uFTaZluXc0SGxLxWrpFBFznHiZCGkZfFOSLdDkhLzWD4DI3n/aKFoeLW6JzdY7doeDkPejwjVH6Jdci15SL4chc0tZC1ylKwcQaYEpgQJPekvGgM64cc/fCPK+mIP0Z4d5SpagvY/OHW6G/xl24parBrYXrab8F5jHP2ajBrPJJU+KAoYsZxIL37fqRRZMUXXWlHipEpa2hpSWgef/04rM5z8zHWByoPk7zs7tEyTYTexXL+MP4FAAD//wMA3nKSV08HAAA=
+        H4sIABCjxF0AA5RVy27bMBC85ysM3RnJaYrGgay0QNEfaHLpjSY3EVuJFJZkav19l6T8kMUE6cWwdmeW+xgu64d9361eAa0yelusr6tiBVoYqfTLtnh6/MHuiofmqrZ+ZwWqwRGsuVqtai4lM9qu3DjAtuCIfCzK6NnxjmsBTXVdVXV5+Ioe1XUUl0k+MvPMeqNdOwVQ2sELYNHc3BAng5sFGACVkQy0JIyDlVbdtnDo4ZDCHGcdR5dHCgQyS8bdlEhAOdUDZVKtN2y9ZtWXx5tP99Xt/e3dr7o8ESLfD/L/+CdCOt8jgnbskLEYRQeXPaE2ZnExAjXJsoFbKtAv65PKCuO1yw3qmavOI7AIyJw58yeGQnvKITb0VPWp4jDDJTRGULLZtPrvXV+X9DdYekDRciqNi3gQI/vAx7rMOQJBA8mVwX5QCIeydsZ0wHXRhNLrcgaZSPuUDeN9LGed5Lmwz8BnGnqDtkQsArzbpgUy8X2/owJI+7N528V4B64kcy0a/9LmBU6t7INwenAtJenMH9DNbrMXw6Yus87Ioksb+i3hmfvOEXIyRCcqutBTJ9JHMNMtc94234RTrzSD6TN4HCrekTyRh/VxqbT157qcIzIk5rVyjQy6yDlOhDSMvCzOEel2QFpqBsNnaDzvFy0MFbdG5+weu0XDy3nQ4xmh8kusQ64tF8GXu6CphaxVloKNM8CUwIQguSflRWNYP+Tohw+upCP+GOHNUaaqLWDzm1ujv8ZfuqWowV4LQ7c6Oo9xzl4NZo1HkgofFEXMOA6kN9+PNIqs+KIr7UgxMmUNLS0JzdPP74fVeW4+xnpH5WGSl909WqaJ0LtYzh/GfwAAAP//AwAhJyweTwcAAA==
     http_version: 
-  recorded_at: Wed, 06 Nov 2019 03:50:46 GMT
+  recorded_at: Thu, 07 Nov 2019 23:04:47 GMT
 recorded_with: VCR 5.0.0

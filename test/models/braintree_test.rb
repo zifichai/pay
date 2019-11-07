@@ -8,15 +8,15 @@ class Pay::Subscription::BraintreeTest < ActiveSupport::TestCase
   end
 
   test 'braintree cancel' do
-    @billable.subscribe(trial_duration: 0)
+    @billable.subscribe(trial_period_days: 0)
     @subscription = @billable.subscription
     @subscription.cancel
-    assert_equal @subscription.ends_at, @subscription.processor_subscription.billing_period_end_date
+    assert_equal @subscription.ends_at.to_date, @subscription.processor_subscription.billing_period_end_date.to_date
     assert_equal 'canceled', @subscription.status
   end
 
   test 'braintree cancel_now!' do
-    @billable.subscribe(trial_duration: 0)
+    @billable.subscribe(trial_period_days: 0)
     @subscription = @billable.subscription
     @subscription.cancel_now!
     assert @subscription.ends_at <= Time.zone.now
@@ -24,7 +24,7 @@ class Pay::Subscription::BraintreeTest < ActiveSupport::TestCase
   end
 
   test 'braintree resume on grace period' do
-    @billable.subscribe(trial_duration: 14)
+    @billable.subscribe(trial_period_days: 14)
     @subscription = @billable.subscription
     @subscription.cancel
     assert_equal @subscription.ends_at, @subscription.trial_ends_at
@@ -35,13 +35,13 @@ class Pay::Subscription::BraintreeTest < ActiveSupport::TestCase
   end
 
   test 'braintree processor subscription' do
-    @billable.subscribe(trial_duration: 0)
+    @billable.subscribe(trial_period_days: 0)
     assert_equal @billable.subscription.processor_subscription.class, Braintree::Subscription
     assert_equal 'active', @billable.subscription.status
   end
 
   test 'braintree can swap plans' do
-    @billable.subscribe(plan: 'default', trial_duration: 0)
+    @billable.subscribe(plan: 'default', trial_period_days: 0)
     @billable.subscription.swap('big')
 
     assert_equal 'big', @billable.subscription.processor_subscription.plan_id
@@ -49,7 +49,7 @@ class Pay::Subscription::BraintreeTest < ActiveSupport::TestCase
   end
 
   test 'braintree can swap plans between frequencies' do
-    @billable.subscribe(plan: 'default', trial_duration: 0)
+    @billable.subscribe(plan: 'default', trial_period_days: 0)
     @billable.subscription.swap('yearly')
 
     assert_equal 'yearly', @billable.subscription.processor_subscription.plan_id

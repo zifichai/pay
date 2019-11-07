@@ -15,7 +15,7 @@ module Pay
           gateway.subscription.update(subscription.id, {
             number_of_billing_cycles: subscription.current_billing_cycle
           })
-          update(status: :canceled, ends_at: subscription.billing_period_end_date)
+          update(status: :canceled, ends_at: subscription.billing_period_end_date.to_date)
         end
       rescue ::Braintree::BraintreeError => e
         raise Error, e.message
