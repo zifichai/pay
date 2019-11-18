@@ -84,7 +84,7 @@ module Pay
         return true if payment_method_id == customer.invoice_settings.default_payment_method
 
         payment_method = ::Stripe::PaymentMethod.attach(payment_method_id, customer: customer.id)
-        ::Stripe::Customer.update(customer.id, invoice_settings: { default_payment_method: payment_method_id })
+        ::Stripe::Customer.update(customer.id, invoice_settings: { default_payment_method: payment_method.id })
 
         update_stripe_card_on_file(payment_method.card)
         true
