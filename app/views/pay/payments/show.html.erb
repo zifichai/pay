@@ -102,8 +102,8 @@
         stripe.confirmCardPayment(
           this.clientSecret,
           {
-            card: this.cardElement,
             payment_method: {
+              card: this.cardElement,
               billing_details: { name: this.name }
             },
             save_payment_method: true,
