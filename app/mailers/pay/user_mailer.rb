@@ -31,7 +31,8 @@ module Pay
       )
     end
 
-    def payment_action_required(user, payment, subscription)
+    def payment_action_required(user, payment_intent_id, subscription)
+      payment = Payment.from_id(payment_intent_id)
       @user, @payment, @subscription = user, payment, subscription
 
       mail(
