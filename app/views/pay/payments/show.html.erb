@@ -34,13 +34,15 @@
           <h1 class="text-xl mt-2 mb-4 text-gray-700"><%=t "requires_action.header", amount: number_to_currency(@payment.amount / 100.0) %></h1>
           <p class="mb-6"><%=t "requires_action.description" %></p>
 
-          <!-- Name -->
-          <label for="cardholder-name" class="inline-block text-sm text-gray-700 font-semibold mb-2"><%=t "requires_action.full_name" %></label>
-          <input id="cardholder-name" type="text" placeholder="Jane Doe" required class="inline-block text-black bg-gray-200 border border-gray-400 rounded-lg w-full px-4 py-3 mb-3 focus:outline-none" v-model="name">
+          <div v-show="status == 'requires_payment_method'">
+            <!-- Name -->
+            <label for="cardholder-name" class="inline-block text-sm text-gray-700 font-semibold mb-2"><%=t "requires_action.full_name" %></label>
+            <input id="cardholder-name" type="text" placeholder="Jane Doe" required class="inline-block text-black bg-gray-200 border border-gray-400 rounded-lg w-full px-4 py-3 mb-3 focus:outline-none" v-model="name">
 
-          <!-- Card -->
-          <label for="card-element" class="inline-block text-sm text-gray-700 font-semibold mb-2"><%=t "requires_action.card" %></label>
-          <div id="card-element" class="bg-gray-200 border border-gray-400 rounded-lg p-4 mb-6"></div>
+            <!-- Card -->
+            <label for="card-element" class="inline-block text-sm text-gray-700 font-semibold mb-2"><%=t "requires_action.card" %></label>
+            <div id="card-element" class="bg-gray-200 border border-gray-400 rounded-lg p-4 mb-6"></div>
+          </div>
 
           <!-- Pay Button -->
           <button id="card-button" class="inline-block w-full px-4 py-3 mb-4 text-white rounded-lg bg-blue-400 hover:bg-blue-500" :class="{ 'bg-blue-400': paymentProcessing, 'bg-blue-600': ! paymentProcessing }" @click="confirmPayment" :disabled="paymentProcessing">
@@ -120,6 +122,7 @@
             this.errorMessage = '<%=t "requires_action.name_missing" %>'
           } else {
             this.errorMessage = result.error.message
+            this.status = result.error.payment_intent.status
           }
         } else {
           this.paymentProcessed = true;
