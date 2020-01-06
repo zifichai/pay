@@ -2,12 +2,7 @@ language: ruby
 rvm:
   - 2.5.7
   - 2.6.5
-  - ruby-2.7.0
-  - ruby-head
-jobs:
-  allow_failures:
-    - rvm: ruby-2.7.0
-    - rvm: ruby-head
+  - 2.7.0
 script:
   - bundle exec rake db:test:prepare
   - bundle exec rake test
