@@ -3,7 +3,7 @@
 
 ### Payments engine for Ruby on Rails
 
-[![Build Status](https://travis-ci.org/excid3/pay.svg?branch=master)](https://travis-ci.org/excid3/pay)
+[![Build Status](https://github.com/excid3/pay/workflows/Tests/badge.svg)](https://github.com/excid3/pay/actions)
 
 Pay is a payments engine for Ruby on Rails 4.2 and higher.
 
