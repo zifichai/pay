@@ -1,13 +1,23 @@
 require 'test_helper'
 
 class Pay::Billable::SyncEmail::Test < ActiveSupport::TestCase
-  test 'email sync' do
-    billable = User.create(email: "test@test.com")
-    assert billable.should_sync_email_with_processor?
+  include ActiveJob::TestHelper
+
+  test 'email sync only on updating customer email' do
+    billable = User.new(email: "test@example.com", processor_id: "test")
+
+    assert_no_enqueued_jobs do
+      billable.save
+    end
+
+    assert_enqueued_jobs 1 do
+      billable.update(email: "test@test.com")
+    end
   end
 
   test 'email sync should be ignored for billable that delegates email' do
-    billable = Team.create(name: "Team 1")
-    refute billable.should_sync_email_with_processor?
+    assert_no_enqueued_jobs do
+      billable = Team.create(name: "Team 1")
+    end
   end
 end

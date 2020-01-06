@@ -24,14 +24,16 @@ class Pay::Subscription::BraintreeTest < ActiveSupport::TestCase
   end
 
   test 'braintree resume on grace period' do
-    @billable.subscribe(trial_period_days: 14)
-    @subscription = @billable.subscription
-    @subscription.cancel
-    assert_equal @subscription.ends_at, @subscription.trial_ends_at
+    travel_to(VCR.current_cassette.originally_recorded_at || Time.current) do
+      @billable.subscribe(trial_period_days: 14)
+      @subscription = @billable.subscription
+      @subscription.cancel
+      assert_equal @subscription.ends_at, @subscription.trial_ends_at
 
-    @subscription.resume
-    assert_nil @subscription.ends_at
-    assert_equal 'active', @subscription.status
+      @subscription.resume
+      assert_nil @subscription.ends_at
+      assert_equal 'active', @subscription.status
+    end
   end
 
   test 'braintree processor subscription' do
