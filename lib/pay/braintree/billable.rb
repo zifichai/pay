@@ -35,7 +35,7 @@ module Pay
       # Returns a Pay::Charge
       def create_braintree_charge(amount, options = {})
         args = {
-          amount: amount / 100.0,
+          amount: amount.to_i / 100.0,
           customer_id: customer.id,
           options: {submit_for_settlement: true}
         }.merge(options)
