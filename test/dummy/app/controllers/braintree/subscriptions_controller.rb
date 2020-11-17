@@ -18,7 +18,7 @@ class Braintree::SubscriptionsController < ApplicationController
     redirect_to braintree_subscription_path(subscription)
   rescue Pay::Error => e
     flash[:alert] = e.message
-    render :new
+    redirect_to new_braintree_subscription_path
   end
 
   def edit
@@ -29,14 +29,17 @@ class Braintree::SubscriptionsController < ApplicationController
 
   def destroy
     @subscription.cancel_now!
+    redirect_to braintree_subscription_path(@subscription)
   end
 
   def cancel
     @subscription.cancel
+    redirect_to braintree_subscription_path(@subscription)
   end
 
   def resume
     @subscription.resume
+    redirect_to braintree_subscription_path(@subscription)
   end
 
   private

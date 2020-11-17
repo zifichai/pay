@@ -8,7 +8,11 @@ Rails.application.routes.draw do
         patch :resume
       end
     end
-    resources :charges
+    resources :charges do
+      member do
+        patch :refund
+      end
+    end
   end
 
   namespace :stripe do

@@ -31,14 +31,17 @@ class Stripe::SubscriptionsController < ApplicationController
 
   def destroy
     @subscription.cancel_now!
+    redirect_to stripe_subscription_path(@subscription)
   end
 
   def cancel
     @subscription.cancel
+    redirect_to stripe_subscription_path(@subscription)
   end
 
   def resume
     @subscription.resume
+    redirect_to stripe_subscription_path(@subscription)
   end
 
   private
