@@ -12,3 +12,6 @@ gemspec
 # your gem to rubygems.org.
 
 gem "standard"
+gem "webpacker"
+gem "web-console"
+gem "turbolinks"
