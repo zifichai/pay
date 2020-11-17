@@ -1,6 +1,12 @@
 module Pay
   module Braintree
     module Billable
+      extend ActiveSupport::Concern
+
+      included do
+        scope :braintree, ->{ where(processor: :braintree) }
+      end
+
       # Handles Billable#customer
       #
       # Returns Braintree::Customer
@@ -115,7 +121,7 @@ module Pay
       end
 
       def update_subscriptions_to_payment_method(token)
-        subscriptions.each do |subscription|
+        subscriptions.braintree.each do |subscription|
           if subscription.active?
             gateway.subscription.update(subscription.processor_id, {payment_method_token: token})
           end
