@@ -216,7 +216,8 @@ GEM
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     semantic_range (3.0.0)
-    sqlite3 (1.4.4)
+    sqlite3 (1.5.4)
+      mini_portile2 (~> 2.8.0)
     standard (1.14.0)
       rubocop (= 1.32.0)
       rubocop-performance (= 1.14.3)
@@ -270,7 +271,7 @@ DEPENDENCIES
   prawn!
   puma
   receipts
-  sqlite3 (~> 1.4)
+  sqlite3 (~> 1.5)
   standard
   standardrb
   stripe (~> 7.0)
