@@ -27,7 +27,7 @@ gem "prawn", github: "prawnpdf/prawn"
 gem "net-smtp", require: false
 
 # Test against different databases
-gem "sqlite3", "~> 1.4"
+gem "sqlite3", "~> 1.6"
 gem "mysql2"
 gem "pg"
 
